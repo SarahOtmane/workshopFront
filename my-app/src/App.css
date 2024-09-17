@@ -23,7 +23,6 @@ a{
 
 main{
   max-width: 576px;
-  background-color: blueviolet;
 }
 
 
@@ -62,4 +61,8 @@ main{
 
 .jc_spacearround{
   justify-content: space-around;
+}
+
+.text_uppercase{
+  text-transform: uppercase;
 }
