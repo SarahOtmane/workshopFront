@@ -21,6 +21,9 @@ a{
   padding: 0;
 }
 
+main{
+  max-width: 576px;
+}
 
 
 
