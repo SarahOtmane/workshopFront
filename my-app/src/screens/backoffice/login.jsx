@@ -1,6 +1,6 @@
 
 import logo from '../../assets/logo.webp';
-
+import '../../css/backoffice/screen.css';
 
 export default function Login(){
     return(
