@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import '../css/components.css'
+import '../css/backoffice/component.css'
 
 export default function Button({text, onClick, icon}){
     return(
