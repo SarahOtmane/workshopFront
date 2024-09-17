@@ -1,0 +1,32 @@
+/*****************************************************
+                    Sommaire
+
+    1:= login (login screen)
+
+*****************************************************/
+
+
+
+/* ----------- 1:= login -------- */
+.login{
+    padding-top: 10rem;
+}
+
+.login form{
+    width: 25%;
+    padding: 5rem;
+    border-radius: 2rem;
+}
+
+.login div.head{
+    width: 90%;
+    margin: auto;
+    color: white;
+    margin-bottom: 5rem;
+}
+
+.login img{
+    width: 20%;
+    border-radius: 1rem;
+    margin-right: 10%;
+}
