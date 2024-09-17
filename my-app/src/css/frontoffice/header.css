@@ -1,3 +1,15 @@
+.header img{
+    margin: auto;
+    margin-top: 1.3rem;
+    z-index: 5;
+}
+
+.header{
+    max-width: 576px;
+}
+
+
+
 #menuToggle{
     display: block;
     position: absolute;
