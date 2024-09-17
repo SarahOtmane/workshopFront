@@ -1,11 +1,15 @@
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 
-import './App.css'
+import './App.css';
 
-function App() {
+import Login from "./screens/backoffice/login";
 
-  return (
-    <h1>Bonjour</h1>
-  )
+export default function App(){
+    return(
+        <BrowserRouter>
+            <Routes>
+                <Route path="/admin" element={<Login />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
-
-export default App
