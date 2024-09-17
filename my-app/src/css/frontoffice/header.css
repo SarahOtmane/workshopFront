@@ -1,19 +1,19 @@
 .header img{
     margin: auto;
-    margin-top: 1.3rem;
+    margin-top: 2.5rem;
     z-index: 5;
 }
 
 .header{
     max-width: 576px;
+    border-bottom: 1px solid black;
+    padding-bottom: 2.5rem;
 }
-
-
 
 #menuToggle{
     display: block;
     position: absolute;
-    top: 1.3rem;
+    top: 2.3rem;
     left: 2rem;
     
     z-index: 1;
