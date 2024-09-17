@@ -6,3 +6,48 @@
 :root{
   --noir : #212121;
 }
+
+
+
+
+/* ----------- 2:= Global css ----------- */
+a{
+  text-decoration: none;
+  color: var(--noir);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+/* ----------- 3:= Global classes ----------- */
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.h-100{
+  min-height: 100vh;
+}
+
+.w-max-c{
+  width: max-content;
+}
+
+.m-auto{
+  margin: auto;
+}
