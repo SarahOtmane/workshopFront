@@ -1,5 +1,5 @@
 
-
+import logo from '../../assets/logo.webp';
 
 
 export default function Login(){
