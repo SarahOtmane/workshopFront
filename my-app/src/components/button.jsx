@@ -22,4 +22,5 @@ Button.propTypes = {
     text: PropTypes.string.isRequired,
     icon: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
+    className: PropTypes.string,
 };
