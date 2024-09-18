@@ -10,7 +10,8 @@ export default function InputProduct({label, type = "text", placeholder = "", on
                 name={name} 
                 onChange={onChange}
                 {...(type !== 'file' && { value })}
-                {...(type === 'file' && { accept: '.webp' })}
+                {...(type === 'file' && { accept: '.webp .png .jpg' })}
+                {...(type === 'checkbox' && { checked: value })}
                 className={type === 'color' ? 'color-input' : 'inputField'}
             />
         </div>
@@ -23,5 +24,5 @@ InputProduct.propTypes = {
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
