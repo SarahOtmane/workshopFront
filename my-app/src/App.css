@@ -1,42 +1,126 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Global styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  height: 40px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Navigation Links */
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none; /* Cacher sur mobile */
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Menu icon */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  padding: 20px;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar .close-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.sidebar a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+
+
+/* Responsive styles */
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide the nav links on mobile */
   }
-  to {
-    transform: rotate(360deg);
+
+  .menu-icon {
+    display: block; /* Show menu icon on mobile */
+  }
+
+  .section-titles {
+    display: none; /* Hide section titles on mobile */
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Desktop (min-width: 769px) */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex; /* Show nav links on desktop */
+    align-items: center;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .menu-icon {
+    display: none; /* Hide menu icon on desktop */
+  }
 
-.read-the-docs {
-  color: #888;
+  .sidebar {
+    display: none; /* Hide sidebar on desktop */
+  }
+
+  .section-titles {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+  }
+
+  .section-titles h1 {
+    margin-right: auto;
+  }
+
+  .section-titles h2 {
+    margin: 0 15px;
+  }
 }
