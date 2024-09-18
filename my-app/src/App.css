@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&display=swap');
 
 
 
@@ -24,6 +24,11 @@ a{
 main{
   max-width: 576px;
   background-color: #F8F8F8;
+}
+
+h1{
+  font-family: 'Konkhmer Sleokchher', sans-serif;
+  letter-spacing: 2px;
 }
 
 
