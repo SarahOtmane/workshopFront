@@ -1,0 +1,29 @@
+.card {
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1rem auto; /* Center the card horizontally */
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    max-width: 90%; /* Set a max width for the card */
+    width: 400px; /* You can adjust this width */
+}
+
+.card h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.card.active {
+    border-color: var(--active-border-color, #000); /* Utilise une variable CSS pour la couleur active */
+}
