@@ -176,7 +176,7 @@ export default function AddConsole() {
                             text='Suivant'
                             onClick={handleNextClick}
                             icon={false}
-                            className={`buttonRounded ${isNextButtonDisabled() ? 'disabled' : ''}`}
+                            className={`buttonRounded`}
                         />
                     </div>
                 </div>

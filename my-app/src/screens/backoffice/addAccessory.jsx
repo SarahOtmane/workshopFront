@@ -14,8 +14,11 @@ export default function AddAccessory(){
         imageUrl: ""
     });
 
+    const [errorMessage, setErrorMessage] = useState('');
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
+        setErrorMessage('');
         if (files && files.length > 0) {
             const file = files[0];
             const imageUrl = URL.createObjectURL(file);
@@ -32,7 +35,14 @@ export default function AddAccessory(){
         }
     };
 
-    const sendAccessory = async () => {};
+    const sendAccessory = async () => {
+        if (accessory.name.trim() === '' || accessory.price <= 0 || accessory.image === '') {
+            setErrorMessage('Le nom, le prix et l\'image sont requis.');
+        } else {
+            console.log(accessory);
+        }
+
+    };
 
     return(
         <main className="w-100 h-100">
@@ -41,7 +51,6 @@ export default function AddAccessory(){
             </div>
             <div className='row'>
                 <div className='w-30 card'>
-                    <form>
                         <InputProduct 
                             label='Nom' 
                             placeholder='nom de votre produit' 
@@ -63,6 +72,7 @@ export default function AddAccessory(){
                             onChange={handleChange}
                             name='image'
                         />
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
                         <div className='row'>
                         <Button
                             text='Upload'
@@ -71,7 +81,6 @@ export default function AddAccessory(){
                             className="buttonRounded"
                         />
                         </div>
-                    </form>
                 </div>
                 <div>
                 <h2 className='pt-2'>Prévisualisation</h2>
