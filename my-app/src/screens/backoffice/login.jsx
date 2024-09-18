@@ -69,7 +69,7 @@ export default function Login(){
                     text='Se connecter'
                     onClick={login}
                     icon = {false}
-                    className="buttonLogin"
+                    className="buttonRounded"
                 />
             </form>
         </main>
