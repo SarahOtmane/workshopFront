@@ -8,15 +8,18 @@ export default function Home() {
     const card=[{
         title: "GAMEBOY DMG",
         picture: image1,
-        color: "red"
+        color: "red",
+        classe: false
     },{
         title: "GAMEBOY ADVANCE",
-        picture: image2,
-        color: "blue"
+        picture: image3,
+        color: "green",
+        classe: true
     },{
         title: "ADVANCE SP",
-        picture: image3,
-        color: "green"
+        picture: image2,
+        color: "purple",
+        classe: false
     }]
     return (
         <main className="home">
@@ -28,6 +31,7 @@ export default function Home() {
                         title={card.title}
                         picture={card.picture}
                         color={card.color}
+                        classe={card.classe}
                     />
                 ))}
             </div>

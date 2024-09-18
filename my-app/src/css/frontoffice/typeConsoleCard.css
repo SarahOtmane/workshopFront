@@ -1,29 +1,53 @@
+/* Style de base pour les cartes */
 .card {
     border: 2px solid transparent;
     border-radius: 12px;
     padding: 1rem;
-    margin: 1rem auto; /* Center the card horizontally */
+    margin: 1rem auto;
     cursor: pointer;
-    transition: border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     background-color: #fff;
-    max-width: 90%; /* Set a max width for the card */
-    width: 400px; /* You can adjust this width */
+    max-width: 90%;
+    width: 400px;
+    height: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    padding: 0%;
 }
 
-.card h2 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
+/* Titre de la carte */
+.card-title {
+    font-family: 'Poppins', sans-serif; /* Utilise une police moderne comme Poppins */
+    font-size: 2rem; /* Taille légèrement plus grande */
+    z-index: 1;
+    width: 100%; /* Le titre occupe toute la largeur */
+    text-align: center; /* Centrer le titre */
+    margin: 1rem 0;
+    transition: color 0.3s ease; /* Transition douce pour le changement de couleur */
+    letter-spacing: 1px; /* Espace entre les lettres pour un look plus sophistiqué */
+    text-transform: uppercase; /* Majuscules pour un effet plus professionnel */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Ajout d'une ombre légère au texte */
 }
 
-.card img {
-    max-width: 100%;
-    border-radius: 8px;
+/* Conteneur pour l'image */
+.card-image {
+    width: 90%; /* L'image prend toute la largeur de la carte */
+    border-radius: 0 0 12px 12px;
+    object-fit: cover; /* Pour que l'image prenne tout l'espace disponible */
+    margin-top: auto; /* Colle l'image en bas de la carte */
+    display: block;
 }
 
+/* Styles pour la carte active avec un dégradé de fond */
 .card.active {
-    border-color: var(--active-border-color, #000); /* Utilise une variable CSS pour la couleur active */
+    background: linear-gradient(135deg, var(--card-color, #000), #333); /* Dégradé plus sombre */
+}
+
+.big-text{
+    width: 50% ; 
+    margin: auto;
 }
