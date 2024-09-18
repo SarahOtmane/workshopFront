@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import '../css/backoffice/component.css'
 
-export default function Button({text, onClick, icon}){
+export default function Button({text, onClick, icon, className=''}){
     return(
         <button 
-            className="button row"
+            className={`button row ${className}`}
             onClick={onClick}
         >
             {text}

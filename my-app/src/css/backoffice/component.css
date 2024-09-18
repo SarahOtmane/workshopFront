@@ -34,6 +34,11 @@
     margin-left: .5rem;
 }
 
+.buttonLogin{
+    width: 30%;
+    border-radius: 2rem;
+}
+
 
 
 /* ----------- 2:= inputLabel -------- */
