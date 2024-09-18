@@ -67,3 +67,9 @@ main{
 .text_uppercase{
   text-transform: uppercase;
 }
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
