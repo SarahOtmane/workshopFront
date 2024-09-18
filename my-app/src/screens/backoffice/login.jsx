@@ -44,7 +44,7 @@ export default function Login(){
         <main className="login w-100 h-100">
             <form className="m-auto">
                 <div className="head row centered">
-                    <h1>ADMIN</h1>
+                    <h1 className='text_uppercase'>admin</h1>
                 </div>
 
                 {error && <p style={{ color: 'red' }}>Email ou mot de passe incorrect.</p>}
