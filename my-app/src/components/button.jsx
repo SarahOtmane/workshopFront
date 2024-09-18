@@ -25,6 +25,6 @@ Button.propTypes = {
     className: PropTypes.string,
 };
 
-InputProduct.defaultProps = {
+Button.defaultProps = {
     className: '',
   };
