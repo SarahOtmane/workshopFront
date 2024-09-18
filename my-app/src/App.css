@@ -4,6 +4,7 @@
 
 /* ----------- 1:= Constantes -------- */
 :root{
+  --white : #FFFFFF;
   --gris : #F5F5F5;
   --background : #F8F8F8;
   --purple-gradient : linear-gradient(to bottom, #544297, #1B1531);
@@ -80,4 +81,12 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card {
+  border-radius: 1rem;
+  background-color: var(--white); /* Fond blanc */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
 }
