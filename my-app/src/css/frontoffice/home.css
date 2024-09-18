@@ -1,30 +1,31 @@
+/* src/css/frontoffice/home.css */
+
 .home {
     position: relative;
-    background-color: var(--gris);
+    background-color: var(--gris); /* La couleur de fond si le fond d'écran est supprimé */
     overflow: hidden;
-    padding-top: 3rem;
 }
 
-.home::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
+.carousel-wrapper {
     width: 100%;
-    height: 35%;
-    background: url('../../assets/background.png') no-repeat center center;
-    background-size: cover;
-    opacity: 0.4;
-    transform: translateX(-50%);
-    z-index: 0;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0; /* Espacement au-dessus et en dessous du carrousel */
 }
 
-.home h1 {
+.carousel-container {
+    width: 100%;
+    max-width: 1200px; /* Ajuste selon les besoins */
+    border-radius: 12px; /* Coins arrondis */
+    overflow: hidden; /* Assure que l'image ne dépasse pas les bordures */
+    background-color: #fff; /* Fond blanc pour le conteneur */
     position: relative;
-    width: 60%;
-    text-align: center;
-    padding: 4rem 0;
-    font-family: 'Poppins', sans-serif;
-    color: black;
-    z-index: 1;
+    padding: 2rem; /* Ajout de padding pour plus d'espace */
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; /* Espacement entre les cartes */
 }

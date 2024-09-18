@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom'; 
 import '../css/frontoffice/header.css';
 import logo from '../assets/logo.webp';
-import logo_short from '../assets/logo_short.webp';
+import logo_short from '../assets/logo.webp';
 
 export default function Header() {
     const [openPopup, setOpenPopup] = useState(false);

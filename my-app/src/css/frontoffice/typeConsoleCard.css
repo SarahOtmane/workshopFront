@@ -1,4 +1,5 @@
 /* Style de base pour les cartes */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -14,7 +15,6 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #fff;
     max-width: 90%;
     width: 400px;
     height: 250px;
@@ -22,33 +22,30 @@
     position: relative;
     padding: 0%;
     animation: fadeIn 0.5s ease-in-out;
-
+    background: linear-gradient(140deg, var(--card-color) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 1) 100%); /* Dégradé plus sombre */
 }
 
 /* Effet de survol */
 .card:hover {
-    background: var(--card-color); /* Couleur de fond au survol */
-    border-color: var(--card-color); /* Bordure au survol */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ombre plus marquée */
+    background: linear-gradient(140deg, var(--card-color) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.9) 100%); /* Couleur avec dégradé encore plus sombre au survol */
+    border-color: #fff; /* Bordure blanche au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Ombre plus marquée */
+    transform: scale(1.02); /* Léger zoom au survol */
 }
 
 /* Titre de la carte */
 .card-title {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Press Start 2P', cursive;
     font-size: 2rem;
     width: 100%;
     text-align: center;
-    margin: 1rem 0;
+    margin: 1.3rem 0;
     transition: color 0.3s ease;
     letter-spacing: 1px;
     text-transform: uppercase;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); /* Amélioration de l'ombre */
+    color: #fff; /* Le texte est blanc au départ */
 }
-.card-title:hover {
-    color: #fff;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-}
-
 
 /* Conteneur pour l'image */
 .card-image {
@@ -58,26 +55,55 @@
     margin-top: auto;
     display: block;
     transition: transform 0.3s ease;
-
 }
 .card:hover .card-image {
     transform: scale(1.1); /* Zoom sur l'image au survol */
 }
 
-/* Styles pour la carte active avec un dégradé de fond */
+/* Styles pour la carte active avec un fond blanc et un effet de lueur */
 .card.active {
-    background: linear-gradient(135deg, var(--card-color, #000), #333);
+    background: #fff; /* Fond blanc quand actif */
+    border-color: var(--card-color); /* Bordure de la couleur d'origine */
+    box-shadow: 0 0 20px var(--card-color); /* Ajout d'un effet "glow" */
+    transform: scale(1.05); /* Légère mise en avant quand active */
+}
+
+/* Titre de la carte active */
+.card.active .card-title {
+    color: var(--card-color); /* Texte de la couleur de la carte quand active */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 10px var(--card-color); /* Texte avec lueur colorée */
 }
 
 .big-text {
     width: 50%;
     margin: auto;
 }
+
+/* Effet de brillance pour un effet encore plus visuel */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 150%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+    transition: transform 0.5s ease;
+    transform: translateX(-50%) rotate(15deg);
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.card:hover::before {
+    transform: translateX(-50%) rotate(25deg); /* Brillance bouge au survol */
+    opacity: 0.5; /* Augmente la brillance */
+}
+
 @media (max-width: 768px) {
     .card {
         max-width: 90%;
-    width: 400px;
-    height: 250px;
+        width: 400px;
+        height: 250px;
     }
 
     .card-title {

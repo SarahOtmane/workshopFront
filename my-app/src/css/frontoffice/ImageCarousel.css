@@ -1,0 +1,64 @@
+.carousel-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.carousel-container {
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #f6f1f6;
+    position: relative;
+    padding: 2rem; /* Ajout de padding pour plus d'espace */
+}
+
+/* Centrer l'image et ajuster la taille */
+.carousel-image {
+    width: 100%;
+    max-width: 1000px; /* Limiter la taille maximale de l'image */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 2rem; /* Ajout d'espace sous l'image pour éviter qu'elle ne touche les points */
+}
+
+.slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cacher les boutons de navigation */
+.slick-prev,
+.slick-next {
+    display: none !important;
+}
+
+/* Style des points de navigation */
+.slick-dots {
+    bottom: 20px; /* Ajouter plus d'espace entre les points et l'image */
+}
+
+.slick-dots li {
+    margin: 0 5px; /* Espacement entre les points */
+}
+
+.slick-dots button {
+    background-color: #ddd;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+}
+
+.slick-dots .slick-active button {
+    background-color: #bab8b8;
+}
+
+/* Effet de survol sur les points */
+.slick-dots button:hover {
+    background-color: #ccc9c9;
+}

@@ -6,6 +6,7 @@ import Login from "./screens/backoffice/login";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Home from "./screens/frontoffice/home";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function App(){
     return(
