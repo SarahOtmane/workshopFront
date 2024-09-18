@@ -4,6 +4,7 @@ import './App.css';
 
 import Login from "./screens/backoffice/login";
 import Header from "./components/header";
+import Footer from "./components/footer";
 import Home from "./screens/frontoffice/home";
 
 export default function App(){
@@ -14,6 +15,8 @@ export default function App(){
                 <Route path="/" element={<Home />} />
                 <Route path="/admin" element={<Login />} />
             </Routes>
+            <Footer />
+
         </BrowserRouter>
     )
 }

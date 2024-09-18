@@ -3,12 +3,13 @@ import TypeConsoleCard from '../../components/typeConsoleCard'; // Assure-toi qu
 import image1 from '../../assets/image1.jpg';
 import image2 from '../../assets/image2.jpg';
 import image3 from '../../assets/image3.jpg';
+import image4 from '../../assets/image4.jpg';
 
 export default function Home() {
     const card=[{
-        title: "GAMEBOY DMG",
-        picture: image1,
-        color: "red",
+        title: "ADVANCE SP",
+        picture: image2,
+        color: "purple",
         classe: false
     },{
         title: "GAMEBOY ADVANCE",
@@ -16,14 +17,18 @@ export default function Home() {
         color: "green",
         classe: true
     },{
-        title: "ADVANCE SP",
-        picture: image2,
-        color: "purple",
+        title: "GAMEBOY DMG",
+        picture: image1,
+        color: "red",
+        classe: false
+    },,{
+        title: "GAMEBOY COLOR",
+        picture: image4,
+        color: "blue",
         classe: false
     }]
     return (
         <main className="home">
-            <h1 className="text_uppercase m-auto">Construit ta propre console</h1>
             <div className="cards-container">
                 {card.map((card, index) => (
                     <TypeConsoleCard

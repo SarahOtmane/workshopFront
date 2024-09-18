@@ -1,23 +1,26 @@
-.header img{
-    margin: auto;
-    margin-top: 2.5rem;
-    z-index: 5;
-}
-
-.header{
+.header {
     max-width: 576px;
     border-bottom: 1px solid black;
     padding-bottom: 2.5rem;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    position: relative; /* To position the menu icon */
 }
 
-#menuToggle{
+.header img {
+    margin: 0 auto;
+    margin-top: 2.5rem;
+    z-index: 5;
+    display: block; /* Ensures the image behaves like a block element */
+}
+
+#menuToggle {
     display: block;
     position: absolute;
     top: 2.3rem;
     left: 2rem;
-    
     z-index: 1;
-    
     -webkit-user-select: none;
     user-select: none;
 }

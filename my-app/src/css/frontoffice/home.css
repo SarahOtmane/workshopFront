@@ -1,11 +1,30 @@
-.home{
+.home {
+    position: relative;
     background-color: var(--gris);
+    overflow: hidden;
+    padding-top: 3rem;
 }
 
-.home h1{
+.home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 35%;
+    background: url('../../assets/background.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.4;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.home h1 {
+    position: relative;
     width: 60%;
     text-align: center;
     padding: 4rem 0;
-    font-family: 'Poppins', sans-serif; /* Utilise une police moderne comme Poppins */
-
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    z-index: 1;
 }

@@ -1,15 +1,17 @@
 import { useState } from "react";
-
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import '../css/frontoffice/header.css';
 import logo from '../assets/logo.webp';
 import logo_short from '../assets/logo_short.webp';
 
-export default function Header(){
+export default function Header() {
     const [openPopup, setOpenPopup] = useState(false);
 
-    return(
+    return (
         <header className="header row">
-            <img src={openPopup ? logo : logo_short} alt='logo' />
+            <Link to='/'>
+                <img src={openPopup ? logo : logo_short} alt='logo' />
+            </Link>
             <nav className='navigationMobile'>
                 <div id="menuToggle">
                     <input type="checkbox" onClick={() => setOpenPopup(!openPopup)} />
@@ -18,7 +20,11 @@ export default function Header(){
                         <span></span>
 
                         <ul id='menu' className={`${openPopup ? 'open' : ''}`}>
-                            <li><a href="/">Personnalisation</a></li>
+                            <li><Link to="/">Personnalisation</Link></li>
+                            <li><Link to="/">Personnalisation</Link></li>
+                            <li><Link to="/">Personnalisation</Link></li>
+                            <li><Link to="/">Personnalisation</Link></li>
+
                         </ul>
                 </div>
             </nav>
