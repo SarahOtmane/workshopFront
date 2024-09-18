@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import '../css/backoffice/component.css'
 
-export default function Button({text, onClick, icon, className=''}){
+export default function Button({text, onClick, icon, className}){
     return(
         <button 
             className={`button row ${className}`}
@@ -24,3 +24,7 @@ Button.propTypes = {
     onClick: PropTypes.func.isRequired,
     className: PropTypes.string,
 };
+
+InputProduct.defaultProps = {
+    className: '',
+  };
