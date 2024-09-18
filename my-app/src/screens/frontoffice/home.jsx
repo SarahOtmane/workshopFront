@@ -10,20 +10,6 @@ import image4 from '../../assets/image4.jpg';
 export default function Home() {
     const card = [
         {
-            title: "ADVANCE SP",
-            picture: image2,
-            color: "purple",
-            classe: false,
-            marginTop: "0.5rem" // Ajouter marginTop uniquement à la première carte
-        },
-        {
-            title: "GAMEBOY ADVANCE",
-            picture: image3,
-            color: "green",
-            classe: true,
-            marginTop: "0px" // Aucun margin pour les autres cartes
-        },
-        {
             title: "GAMEBOY DMG",
             picture: image1,
             color: "red",
@@ -36,6 +22,20 @@ export default function Home() {
             color: "blue",
             classe: false,
             marginTop: "0px"
+        },
+        {
+            title: "ADVANCE SP",
+            picture: image2,
+            color: "purple",
+            classe: false,
+            marginTop: "0rem" // Ajouter marginTop uniquement à la première carte
+        },
+        {
+            title: "GAMEBOY ADVANCE",
+            picture: image3,
+            color: "green",
+            classe: true,
+            marginTop: "0px" // Aucun margin pour les autres cartes
         }
     ];
 
@@ -46,6 +46,7 @@ export default function Home() {
                     <ImageCarousel />
                 </div>
             </div>
+            <h2 className="cards-title">Nos Consoles</h2>
             <div className="cards-container">
                 {card.map((card, index) => (
                     <TypeConsoleCard

@@ -6,8 +6,8 @@ import '../css/frontoffice/ImageCarousel.css';
 
 // Importer les images
 import img1 from '../assets/swipe1.png';
-import img2 from '../assets/swipe2.jpg';
-import img3 from '../assets/swipe3.jpg';
+import img2 from '../assets/swipe2.png';
+import img3 from '../assets/swipe3.png';
 
 const ImageCarousel = () => {
     // Paramètres du carrousel
@@ -24,13 +24,19 @@ const ImageCarousel = () => {
 
     return (
         <div className="carousel-container">
+            <h2
+                className="carousel-title"
+                
+            >
+                Personalisez vos Consoles
+            </h2>
             <Slider {...settings}>
                 
                 <div>
-                    <img src={img2} alt="Image 2" className="carousel-image image-medium" />
+                    <img src={img2} alt="Image 2"  className="carousel-image" />
                 </div>
                 <div>
-                    <img src={img3} alt="Image 3" className="carousel-image image-small" />
+                    <img src={img3} alt="Image 3" className="carousel-image" />
                 </div>
             </Slider>
         </div>
