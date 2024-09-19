@@ -58,7 +58,6 @@
                 opacity 0.55s ease;
 }
 
-
 #menuToggle span:first-child{
     transform-origin: 0% 0%;
 }
@@ -85,7 +84,6 @@
 
 #menu{
     position: absolute;
-    width: 100vw;
     height: 90vh;
     margin: -100px 0 0 0;
     padding: 50px;
@@ -99,17 +97,40 @@
     /* to stop flickering of text in safari */
     
     transform-origin: 0% 0%;
-    transform: translate(100%, 0);
+    transform: translateX(-100%);
     
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    display: none;
+}
+
+@media (max-width: 1920px) {
+    #menu {
+        width: 30vw;
+    }
+}
+
+@media (max-width: 992px) {
+    #menu {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu {
+        width: 50vw;
+    }
+}
+
+@media (max-width: 576px) {
+    #menu {
+        width: 60vw;
+    }
 }
 
 #menu.open{
-    display: block;
+    transform: translateX(0);
 }
 
 #menu li{
@@ -138,4 +159,20 @@
 #menuToggle input:checked ~ ul{
     transform: none;
     opacity: 1;
+}
+
+/* Ajout de l'overlay sombre */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    display: none;
+}
+
+#menuToggle input:checked ~ .overlay {
+    display: block;
 }
