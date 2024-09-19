@@ -1,4 +1,4 @@
-// src/pages/Home.jsx
+import { useNavigate } from 'react-router-dom'; // Import useNavigate pour la navigation
 import '../../css/frontoffice/home.css';
 import TypeConsoleCard from '../../components/typeConsoleCard'; // Assure-toi que le chemin est correct
 import ImageCarousel from '../../components/ImageCarousel'; // Assure-toi que le chemin est correct
@@ -8,6 +8,8 @@ import image3 from '../../assets/image3.jpg';
 import image4 from '../../assets/image4.jpg';
 
 export default function Home() {
+    const navigate = useNavigate(); // Déclaration de useNavigate pour naviguer vers Personnalisation
+
     const card = [
         {
             title: "GAMEBOY DMG",
@@ -39,6 +41,11 @@ export default function Home() {
         }
     ];
 
+    const handleCardClick = (card) => {
+        // Navigation vers la page Personnalisation avec les données de la carte
+        navigate('/personnalisation', { state: card });
+    };
+
     return (
         <main className="home">
             <div className="carousel-wrapper">
@@ -49,14 +56,15 @@ export default function Home() {
             <h2 className="cards-title">Nos Consoles</h2>
             <div className="cards-container">
                 {card.map((card, index) => (
-                    <TypeConsoleCard
-                        key={index}
-                        title={card.title}
-                        picture={card.picture}
-                        color={card.color}
-                        classe={card.classe}
-                        marginTop={card.marginTop} // Passer marginTop
-                    />
+                    <div key={index} onClick={() => handleCardClick(card)}>
+                        <TypeConsoleCard
+                            title={card.title}
+                            picture={card.picture}
+                            color={card.color}
+                            classe={card.classe}
+                            marginTop={card.marginTop}
+                        />
+                    </div>
                 ))}
             </div>
         </main>

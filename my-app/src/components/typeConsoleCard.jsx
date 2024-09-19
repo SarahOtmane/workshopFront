@@ -1,8 +1,9 @@
+// src/components/TypeConsoleCard.jsx
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import '../css/frontoffice/typeConsoleCard.css';
 
-export default function TypeConsoleCard({ title, picture, color, classe, marginTop }) {
+export default function TypeConsoleCard({ title, picture, color, classe, marginTop, onClick }) {
     const [isActive, setIsActive] = useState(false);
 
     return (
@@ -11,17 +12,20 @@ export default function TypeConsoleCard({ title, picture, color, classe, marginT
             style={{
                 background: isActive 
                     ? '#fff' 
-                    : `linear-gradient(140deg, ${color} 0%, rgba(0, 0, 0, 0.8) 100%)`,  // Dégradé plus clair en haut
-                borderColor: isActive ? color : color,  // La bordure reste colorée au départ et après le clic
-                '--card-color': color, // Définir la couleur comme variable CSS
-                marginTop: marginTop, // Appliquer le marginTop reçu
+                    : `linear-gradient(140deg, ${color} 0%, rgba(0, 0, 0, 0.8) 100%)`,
+                borderColor: isActive ? color : color,
+                '--card-color': color,
+                marginTop: marginTop,
             }}
-            onClick={() => setIsActive(!isActive)} // Inverser l'état de la carte au clic
+            onClick={() => {
+                setIsActive(!isActive);
+                onClick();  // Appeler la fonction passée au clic
+            }}
         >
             <h2
                 className={`card-title ${classe ? 'big-text' : ''}`}
                 style={{
-                    color: isActive ? color : '#fff', // Le texte devient coloré au clic et blanc au départ
+                    color: isActive ? color : '#fff',
                 }}
             >
                 {title}
@@ -36,5 +40,6 @@ TypeConsoleCard.propTypes = {
     picture: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
     classe: PropTypes.bool.isRequired,
-    marginTop: PropTypes.string, // Ajouter cette prop optionnelle
+    marginTop: PropTypes.string,
+    onClick: PropTypes.func.isRequired  // Prop pour capturer le clic
 };
