@@ -156,11 +156,11 @@
 }
 
 #menu li a.active {
-    color: rgba(255, 255, 255, 1); /* Couleur blanche avec 100% d'opacité */
+    color: rgba(255, 255, 255, 1);
 }
 
 #menu li a:not(.active) {
-    color: rgba(255, 255, 255, 0.45); /* Couleur blanche avec 75% d'opacité */
+    color: rgba(255, 255, 255, 0.45);
 }
 
 #menu li + li{

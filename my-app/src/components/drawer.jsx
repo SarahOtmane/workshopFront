@@ -6,7 +6,6 @@ import '../css/frontoffice/header.css';
 export default function Drawer(){
     const [openPopup, setOpenPopup] = useState(false);
     const path = useLocation().pathname;
-    
 
     useEffect(() => {
         const handleResize = () => {
@@ -29,7 +28,7 @@ export default function Drawer(){
 
             <ul id='menu' className={`${openPopup ? 'open' : ''}`}>
                 <li><a href="/" className={path === '/' ? 'active' : ''}>Acceuil</a></li>
-                <li><a href="/ok" className={path === '/personalisation' ? 'active' : ''}>Personnalisation</a></li>
+                <li><a href="/personnalisation" className={path === '/personnalisation' ? 'active' : ''}>Personnalisation</a></li>
             </ul>
             <div className="overlay"></div>
         </div>
