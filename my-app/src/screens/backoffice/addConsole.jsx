@@ -3,6 +3,7 @@ import { useState } from 'react';
 import '../../css/backoffice/screen.css';
 import InputProduct from '../../components/backoffice/inputProduct';
 import Button from '../../components/button';
+import axiosInstance from '../../services/axiosConfig';
 
 export default function AddConsole() {
 
@@ -140,11 +141,30 @@ export default function AddConsole() {
         return consoleData.name.trim() === '' || consoleData.price <= 0;
     };
 
+    // envoyer les données de la console à l'API
+    const saveConsoleToDB = async () => {
+        try {
+            const response = await axiosInstance.post('/consoles', {
+                name: consoleData.name,
+                price: consoleData.price,
+            });
+
+            // Gérer la réponse si nécessaire
+            console.log('Console ajoutée avec succès:', response.data);
+
+            // Passer à l'étape suivante pour ajouter les accessoires
+            setStep(2);
+        } catch (error) {
+            console.error('Erreur lors de l\'ajout de la console:', error);
+            setErrorMessage('Erreur lors de l\'ajout de la console. Veuillez réessayer.');
+        }
+    };
+
     const handleNextClick = () => {
         if (isNextButtonDisabled()) {
             setErrorMessage('Des champs sont manquants ou incorrects.');
         } else {
-            setStep(2);
+            saveConsoleToDB();
         }
     };
 
