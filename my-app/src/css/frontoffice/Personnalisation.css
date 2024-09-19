@@ -97,11 +97,6 @@
 .option-content label input[type="checkbox"] {
     margin-right: 10px; /* Ajuste l'espace entre le bouton et le texte du label */
 }
-
-
-
-
-
 .color-options {
     display: flex;
     gap: 10px;
@@ -152,6 +147,7 @@
 }
 
 .price-container {
+    margin-top: 2rem;
     margin-left: 2rem;
     width: 80%;
     background-color: #fff;
