@@ -8,12 +8,8 @@ export default function Panel(){
 
     const navigate = useNavigate();
 
-    const handleCardClick = (type) => {
-        if (type === 'accessory') {
-            navigate('/admin/add-accessory');
-        } else if (type === 'console') {
-            navigate('/admin/add-console');
-        }
+    const handleCardClick = async(type) => {
+        navigate('/admin/add-console')
     };
 
 
