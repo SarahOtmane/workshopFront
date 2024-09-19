@@ -8,7 +8,8 @@ export default function Header(){
     const [openPopup, setOpenPopup] = useState(false);
 
     return(
-        <header className="header row">
+        <header>
+            <div className="header row">
             <img src={openPopup ? logo : logo_short} alt='logo' />
             <nav className='navigationMobile'>
                 <div id="menuToggle">
@@ -22,6 +23,7 @@ export default function Header(){
                         </ul>
                 </div>
             </nav>
+            </div>
         </header>
     )
 }
