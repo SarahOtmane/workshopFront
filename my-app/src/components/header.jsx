@@ -22,7 +22,7 @@ export default function Header(){
     return(
         <header>
             <div className="header row">
-                <img src={isMobile ? (openPopup ? logo : logo_short) : logo} alt='logo' />
+                <img src={isMobile ? logo_short : logo} alt='logo' />
                 <nav className='navigationMobile'>
                     <div id="menuToggle">
                         <input type="checkbox" onClick={() => setOpenPopup(!openPopup)} />
