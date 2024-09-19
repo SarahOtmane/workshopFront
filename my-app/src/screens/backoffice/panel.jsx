@@ -22,7 +22,6 @@ export default function Panel(){
             <div className="head row centered">
                 <h1 className='text_uppercase'>panel</h1>
             </div>
-            <AddCard type="accessory" title="ajouter un accesoire" onClick={() => handleCardClick('accessory')}/>
             <AddCard type="console" title="ajouter une console" onClick={() => handleCardClick('console')}/>
         </main>
     )
