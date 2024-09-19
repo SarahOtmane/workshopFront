@@ -76,7 +76,7 @@
 }
 
 .section-option i.fa-chevron-down {
-    transform: rotate(20deg); /* Fait pointer la flèche vers le bas */
+    transform: rotate(0deg); /* Fait pointer la flèche vers le bas */
 }
 
 
@@ -94,6 +94,12 @@
 .option-content label input[type="radio"] {
     margin-right: 10px; /* Ajuste l'espace entre le bouton et le texte du label */
 }
+.option-content label input[type="checkbox"] {
+    margin-right: 10px; /* Ajuste l'espace entre le bouton et le texte du label */
+}
+
+
+
 
 
 .color-options {
