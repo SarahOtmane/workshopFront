@@ -1,6 +1,5 @@
 import { useState } from 'react';
-
-import logo from '../../assets/logo.webp';
+import { useNavigate } from 'react-router-dom';
 
 import '../../css/backoffice/screen.css';
 import axiosInstance, {addToken} from '../../services/axiosConfig.jsx';
@@ -9,6 +8,7 @@ import Button from '../../components/button.jsx';
 
 
 export default function Login(){
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -20,11 +20,12 @@ export default function Login(){
         e.preventDefault();
         
         try {
-            const response = await axiosInstance.post('/admins/login', formData);
+            const response = await axiosInstance.post('/users/login', formData);
             const token = response.data.token;
 
             addToken(token);
-            localStorage.setItem('role', 'admin');
+            navigate('/admin/panel');
+            
         } catch (error) {
             const status = error.response ? error.response.status : 500;
             switch (status) {
