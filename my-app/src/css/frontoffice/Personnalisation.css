@@ -1,3 +1,4 @@
+
 :root {
     --color-red: linear-gradient(135deg, #ff4b2b 0%, #ff416c 100%);
     --color-blue: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
@@ -7,11 +8,13 @@
     --color-black: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
     --color-white: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
 }
+
 .personnalisation-container {
     max-width: 900px;
     margin: auto;
     padding: 20px;
     font-family: Arial, sans-serif;
+    background-color: #F8F8F8;
 }
 
 .personnalisation-title {
@@ -28,7 +31,6 @@
     max-width: 300px;
     border-radius: 10px;
     transform: perspective(500px) rotateX(5deg); /* Crée un léger effet 3D */
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3); /* Ombre portée sous l'image */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -38,6 +40,8 @@
 }
 
 .form-container {
+    margin-top: 33rem;
+
     margin-left: 2rem;
     width: 80%;
     padding: 20px;
@@ -191,4 +195,39 @@
 
 .submit-btn i {
     margin-right: 10px;
+}
+/*test*/
+/* Conteneur de l'image de personnalisation */
+.console-viewer {
+    position: relative;
+    width: 300px; /* Ajuste la taille pour qu'elle corresponde à celle de l'image d'origine */
+    height: auto;
+    margin: 20px auto; /* Centrer le conteneur */
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+/* Styles communs pour chaque image de la console */
+.personnalisation-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Garde l'image dans la zone sans la déformer */
+    z-index: 1; /* Superpose les images dans le bon ordre */
+    transition: all 0.3s ease; /* Animation douce pour les changements d'options */
+}
+
+/* Ajustement pour chaque couche, en s'assurant que l'image s'empile correctement */
+.personnalisation-image.boutons {
+    z-index: 2; /* Les boutons au-dessus de la coque */
+}
+
+.personnalisation-image.ecran {
+    z-index: 3; /* L'écran par-dessus les autres couches */
 }

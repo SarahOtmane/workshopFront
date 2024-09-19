@@ -2,17 +2,27 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../../css/frontoffice/Personnalisation.css';
 
+// Importation des images dans le dossier assets
+import frontShellBlue from '../../assets/front/GB-Front-GB-GB_FRONT_SHELL_Blue0023.jpg';
+import frontShellRed from '../../assets/front/GB-Front-GB-GB_FRONT_SHELL_Red0023.jpg';
+import frontShellGreen from '../../assets/front/GB-Front-GB-GB_FRONT_SHELL_Green0023.jpg';
+import frontPadYellow from '../../assets/front/GB-Front-GB_FRONT_PAD_Yellow0023.png';
+import frontPadViolet from '../../assets/front/GB-Front-GB_FRONT_PAD_Violet0023.png';
+import frontPadBlack from '../../assets/front/GB-Front-GB_FRONT_PAD_Black0023.png';
+import frontIpsBlack from '../../assets/front/GB-Front-GB_FRONT_IPS_BLACK.png';
+// Importation de l'image pour l'écran blanc
+
 export default function Personnalisation() {
     const location = useLocation();
-    const { title, picture } = location.state || {}; // Récupérer les infos passées via navigation
+    const { title } = location.state || {}; // On n'a plus besoin de l'image de la carte
 
     const [activeSection, setActiveSection] = useState(null);
     const [selectedOptions, setSelectedOptions] = useState({
         base: null,
-        coque: null,
+        coque: frontShellBlue,  // Valeur par défaut
         coqueArriere: null,
-        ecran: null,
-        boutons: null,
+        ecran: frontIpsBlack,  // Valeur par défaut
+        boutons: frontPadYellow,  // Valeur par défaut
         pads: null,
         power: null,
         laniere: null,
@@ -25,10 +35,11 @@ export default function Personnalisation() {
 
     const [totalPrice, setTotalPrice] = useState(149.00); // Prix de base ajustable
 
-    const handleOptionChange = (option, price) => {
+    // Fonction pour gérer les changements d'options et mettre à jour l'image sélectionnée
+    const handleOptionChange = (option, price, image = null) => {
         setSelectedOptions((prevOptions) => ({
             ...prevOptions,
-            [option]: price,
+            [option]: image || prevOptions[option], // Met à jour l'image si elle est fournie
         }));
         setTotalPrice((prevPrice) => prevPrice + price);
     };
@@ -36,7 +47,17 @@ export default function Personnalisation() {
     return (
         <div className="personnalisation-container">
             <h1 className="personnalisation-title" style={{ color: '#544297' }}>{title || "Personnalisation de Console"}</h1>
-            {picture && <img src={picture} alt={title} className="personnalisation-image" />}
+
+            <div className="console-viewer">
+                {/* Afficher l'image de la coque */}
+                <div className="image-wrapper">
+                    {selectedOptions.coque && <img src={selectedOptions.coque} alt="coque" className="personnalisation-image" />}
+                    {/* Superposer l'image des boutons */}
+                    {selectedOptions.boutons && <img src={selectedOptions.boutons} alt="boutons" className="personnalisation-image boutons" />}
+                    {/* Superposer l'image de l'écran */}
+                    {selectedOptions.ecran && <img src={selectedOptions.ecran} alt="écran" className="personnalisation-image ecran" />}
+                </div>
+            </div>
 
             <div className="form-container" style={{ borderRadius: '10px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
                 {/* Liste des sections */}
@@ -48,43 +69,79 @@ export default function Personnalisation() {
                         </div>
                         {activeSection === option && (
                             <div className="option-content">
-                                {option === 'coque' || option === 'coqueArriere' || option === 'ecran' || option === 'boutons' ? (
+                                {/* Gestion des différentes options */}
+                                {option === 'base' ? (
+                                    <div>
+                                        {/* Option spécifique pour la base */}
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="base"
+                                                value="Je fournis la console"
+                                                onChange={() => handleOptionChange('base', 0)}
+                                            />
+                                            Je fournis la console
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="base"
+                                                value="Je n’ai pas de console à fournir (+40€)"
+                                                onChange={() => handleOptionChange('base', 40)}
+                                            />
+                                            Je n’ai pas de console à fournir (+40€)
+                                        </label>
+                                    </div>
+                                ) : (option === 'coque' || option === 'coqueArriere' || option === 'boutons' || option === 'pads' || option === 'coqueSpecial') ? (
                                     <div className="color-options">
-                                        {['red', 'blue', 'green', 'purple', 'yellow', 'black', 'white'].map((color) => (
+                                        {['blue', 'red', 'green', 'yellow', 'violet', 'black'].map((color) => (
                                             <button
                                                 key={color}
                                                 className={`color-circle ${color}`}
-                                                style={{ backgroundColor: color }}
-                                                onClick={() => handleOptionChange(option, 10)} // Prix fixe pour chaque couleur
+                                                onClick={() =>
+                                                    handleOptionChange(option, 10, color === 'blue' ? frontShellBlue :
+                                                        color === 'red' ? frontShellRed :
+                                                        color === 'green' ? frontShellGreen :
+                                                        color === 'yellow' ? frontPadYellow :
+                                                        color === 'violet' ? frontPadViolet : frontPadBlack)
+                                                }
                                             />
                                         ))}
                                     </div>
+                                ) : option === 'ecran' ? (
+                                    <div>
+                                        {/* Option spécifique pour l'écran */}
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="ecran"
+                                                value="IPS Black"
+                                                onChange={() => handleOptionChange('ecran', 20, frontIpsBlack)}
+                                                defaultChecked
+                                            />
+                                            IPS Black (+20€)
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="ecran"
+                                                value="IPS White"
+                                                onChange={() => handleOptionChange('ecran', 15, frontIpsWhite)}
+                                            />
+                                            IPS White (+15€)
+                                        </label>
+                                    </div>
                                 ) : (
                                     <div>
-                                        {/* Exemple pour d'autres options comme la base */}
-                                        {option === 'base' && (
-                                            <div className="option-content">
-                                                <label>
-                                                    <input
-                                                        type="radio"
-                                                        name="base"
-                                                        value="Je fournis la console"
-                                                        onChange={() => handleOptionChange('base', 0)}
-                                                    />
-                                                    Je fournis la console
-                                                </label>
-                                                <label>
-                                                    <input
-                                                        type="radio"
-                                                        name="base"
-                                                        value="Je n’ai pas de console à fournir (+40€)"
-                                                        onChange={() => handleOptionChange('base', 40)}
-                                                    />
-                                                    Je n’ai pas de console à fournir (+40€)
-                                                </label>
-                                            </div>
-                                        )}
-                                        {/* Ajoutez ici d'autres options spécifiques */}
+                                        {/* Gestion des options sans images spécifiques */}
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                name={option}
+                                                onChange={() => handleOptionChange(option, 5)}
+                                            />
+                                            Ajouter {option.charAt(0).toUpperCase() + option.slice(1)} (+5€)
+                                        </label>
                                     </div>
                                 )}
                             </div>
