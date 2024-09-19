@@ -6,6 +6,8 @@
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
     position: relative; /* To position the menu icon */
+    background-color: #ffffff
+    ;
 }
 
 .header img {

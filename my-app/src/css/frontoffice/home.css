@@ -2,7 +2,7 @@
 
 .home {
     position: relative;
-    background-color: var(--grey); /* La couleur de fond si le fond d'écran est supprimé */
+    background-color: #e4e3e3; /* La couleur de fond si le fond d'écran est supprimé */
     overflow: hidden;
 }
 
@@ -11,18 +11,18 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    margin: 2rem 0; /* Espacement au-dessus et en dessous du carrousel */
 }
 .cards-title{
     font-family: 'Press Start 2P', cursive;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     width: 100%;
     text-align: center;
     transition: color 0.3s ease;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #000000; /* Le texte est blanc au départ */
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
+    padding-top: 2rem;
 }
 
 .carousel-container {

@@ -7,7 +7,6 @@
 .card {
     border: 2px solid transparent;
     border-radius: 12px;
-    padding: 1rem;
     margin: 1rem auto;
     cursor: pointer;
     transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
@@ -20,17 +19,21 @@
     height: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
-    padding: 0%;
     animation: fadeIn 0.5s ease-in-out;
-    background: linear-gradient(140deg, var(--card-color) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 1) 100%); /* Dégradé plus sombre */
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.8) 0%, var(--card-color, #000) 100%);
 }
-
 /* Effet de survol */
 .card:hover {
     background: linear-gradient(140deg, var(--card-color) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.9) 100%); /* Couleur avec dégradé encore plus sombre au survol */
     border-color: #fff; /* Bordure blanche au survol */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Ombre plus marquée */
     transform: scale(1.02); /* Léger zoom au survol */
+}
+.card.active {
+    background: #fff; /* Fond blanc quand actif */
+    border-color: var(--card-color); /* Bordure de la couleur d'origine */
+    box-shadow: 0 0 20px var(--card-color); /* Ajout d'un effet "glow" */
+    transform: scale(1.05); /* Légère mise en avant quand active */
 }
 
 /* Titre de la carte */
@@ -39,7 +42,7 @@
     font-size: 2rem;
     width: 100%;
     text-align: center;
-    margin: 1.6rem 0;
+    margin: 1.5rem 0;
     transition: color 0.3s ease;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -60,13 +63,7 @@
     transform: scale(1.1); /* Zoom sur l'image au survol */
 }
 
-/* Styles pour la carte active avec un fond blanc et un effet de lueur */
-.card.active {
-    background: #fff; /* Fond blanc quand actif */
-    border-color: var(--card-color); /* Bordure de la couleur d'origine */
-    box-shadow: 0 0 20px var(--card-color); /* Ajout d'un effet "glow" */
-    transform: scale(1.05); /* Légère mise en avant quand active */
-}
+
 
 /* Titre de la carte active */
 .card.active .card-title {

@@ -9,7 +9,9 @@ export default function TypeConsoleCard({ title, picture, color, classe, marginT
         <div
             className={`card ${isActive ? 'active' : ''}`}
             style={{
-                background: isActive ? '#fff' : color,  // Le fond est coloré au départ et devient blanc au clic
+                background: isActive 
+                    ? '#fff' 
+                    : `linear-gradient(140deg, ${color} 0%, rgba(0, 0, 0, 0.8) 100%)`,  // Dégradé plus clair en haut
                 borderColor: isActive ? color : color,  // La bordure reste colorée au départ et après le clic
                 '--card-color': color, // Définir la couleur comme variable CSS
                 marginTop: marginTop, // Appliquer le marginTop reçu
