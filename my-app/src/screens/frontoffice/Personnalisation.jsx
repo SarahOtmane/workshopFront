@@ -283,5 +283,6 @@ const getSideBoutonsFromFront = (frontImage) => {
                 </button>
             </div>
         </div>
+        
     );
 }
