@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../../css/frontoffice/Personnalisation.css';
 
 import axiosInstance from '../../services/axiosConfig';
@@ -117,6 +117,7 @@ export const getFrontEcranFromSide = (sideImage) => {
 };
 
 export default function Personnalisation() {
+    const navigate = useNavigate();
     const location = useLocation();
     const { title } = location.state || {};
 
@@ -294,7 +295,8 @@ const handleOptionChange = (option, price, image = null, side = false, color) =>
             const newProduct = product;
             newProduct.name = name;
             const response = await axiosInstance.post('/products', newProduct);
-            console.log(response.data);
+            const id = response.data.ID;
+            window.location.href = `https://api-retrometroid.devprod.fr/panier/?add_to_cart=${id}`;
         } catch (error) {
             console.error('Erreur lors de l\'enregistrement de l\'utilisateur:', error);
         }
