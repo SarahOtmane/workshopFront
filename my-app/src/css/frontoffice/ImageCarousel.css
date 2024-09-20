@@ -29,7 +29,6 @@
     object-fit: cover; /* Assure que l'image couvre bien le conteneur */
 }
 .second-image {
-    /* Spécifique à la deuxième image */
     padding-top: 2rem; /* Exemple de style spécifique */
 }
 

@@ -115,6 +115,7 @@ export default function Personnalisation() {
 
     const [activeSection, setActiveSection] = useState(null);
     const [view, setView] = useState('front');
+    
     const [selectedOptions, setSelectedOptions] = useState({
         coque: frontShellBlue,
         sideCoque: sideShellBlue,
@@ -128,65 +129,106 @@ export default function Personnalisation() {
 
     const [totalPrice, setTotalPrice] = useState(149.00);
 
-    const handleOptionChange = (option, price, image = null, side = false) => {
-        const optionKey = side ? `side${option.charAt(0).toUpperCase() + option.slice(1)}` : option;
+    // Nouvel état pour suivre les sections dont le prix a déjà été augmenté
+const [updatedSections, setUpdatedSections] = useState({
+    coque: false,
+    boutons: false,
+    pads: false,
+    ecran: false,
+    batterie: false,
+    accessoires: false,
+});
 
-        setSelectedOptions((prevOptions) => {
-            const newOptions = { ...prevOptions, [optionKey]: image || prevOptions[optionKey] };
+const handleOptionChange = (option, price, image = null, side = false) => {
+    const optionKey = side ? `side${option.charAt(0).toUpperCase() + option.slice(1)}` : option;
 
+    setSelectedOptions((prevOptions) => {
+        const newOptions = { ...prevOptions };
+
+        // Vérifier si l'option a changé avant de mettre à jour
+        const currentOptionImage = prevOptions[optionKey];
+        if (image && currentOptionImage !== image) {
+            newOptions[optionKey] = image;
+
+            // Gestion du changement d'options pour la coque
             if (option === 'coque') {
                 if (side) {
-                    const sideCoqueImage = image || prevOptions.sideCoque;
+                    const sideCoqueImage = image;
                     newOptions.sideCoque = sideCoqueImage;
                     newOptions.coque = getFrontCoqueFromSide(sideCoqueImage);
                 } else {
-                    const frontCoqueImage = image || prevOptions.coque;
+                    const frontCoqueImage = image;
                     newOptions.coque = frontCoqueImage;
                     newOptions.sideCoque = getSideCoqueFromFront(frontCoqueImage);
                 }
             }
 
+            // Gestion du changement d'options pour les boutons
             if (option === 'boutons') {
                 if (side) {
-                    const sideBoutonsImage = image || prevOptions.sideBoutons;
+                    const sideBoutonsImage = image;
                     newOptions.sideBoutons = sideBoutonsImage;
                     newOptions.boutons = getFrontBoutonsFromSide(sideBoutonsImage);
                 } else {
-                    const frontBoutonsImage = image || prevOptions.boutons;
+                    const frontBoutonsImage = image;
                     newOptions.boutons = frontBoutonsImage;
                     newOptions.sideBoutons = getSideBoutonsFromFront(frontBoutonsImage);
                 }
             }
 
+            // Gestion du changement d'options pour les pads
             if (option === 'pads') {
                 if (side) {
-                    const sidePadsImage = image || prevOptions.sidePads;
+                    const sidePadsImage = image;
                     newOptions.sidePads = sidePadsImage;
                     newOptions.pads = getFrontPadsFromSide(sidePadsImage);
                 } else {
-                    const frontPadsImage = image || prevOptions.pads;
+                    const frontPadsImage = image;
                     newOptions.pads = frontPadsImage;
                     newOptions.sidePads = getSidePadsFromFront(frontPadsImage);
                 }
             }
 
+            // Gestion du changement d'options pour l'écran
             if (option === 'ecran') {
                 if (side) {
-                    const sideEcranImage = image || prevOptions.sideEcran;
+                    const sideEcranImage = image;
                     newOptions.sideEcran = sideEcranImage;
                     newOptions.ecran = getFrontEcranFromSide(sideEcranImage);
                 } else {
-                    const frontEcranImage = image || prevOptions.ecran;
+                    const frontEcranImage = image;
                     newOptions.ecran = frontEcranImage;
                     newOptions.sideEcran = getSideEcranFromFront(frontEcranImage);
                 }
             }
 
-            return newOptions;
-        });
+            // Vérifier si la catégorie d'option n'a pas déjà été changée pour éviter d'augmenter plusieurs fois
+            if (!updatedSections[option]) {
+                setTotalPrice((prevPrice) => prevPrice + price);
 
+                // Marquer cette catégorie comme mise à jour pour empêcher l'augmentation du prix à nouveau
+                setUpdatedSections((prevUpdated) => ({
+                    ...prevUpdated,
+                    [option]: true,
+                }));
+            }
+        }
+
+        return newOptions;
+    });
+
+    // Cas de batterie et accessoires (pas d'image, seulement un prix)
+    if ((option === 'batterie' || option === 'accessoires') && !updatedSections[option]) {
         setTotalPrice((prevPrice) => prevPrice + price);
-    };
+
+        // Marquer comme mise à jour pour empêcher de l'augmenter à nouveau
+        setUpdatedSections((prevUpdated) => ({
+            ...prevUpdated,
+            [option]: true,
+        }));
+    }
+};
+
 
     const toggleView = () => {
         setView((prevView) => (prevView === 'front' ? 'side' : 'front'));
