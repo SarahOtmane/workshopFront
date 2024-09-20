@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import '../css/backoffice/component.css'
 
-export default function Button({text, onClick, icon}){
+export default function Button({text, onClick, icon, className="", disabled=false}){
     return(
         <button 
-            className="button row"
+            className={`button row ${className}`}
             onClick={onClick}
+            disabled={disabled}
         >
             {text}
             {icon && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,4 +23,6 @@ Button.propTypes = {
     text: PropTypes.string.isRequired,
     icon: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
+    className: PropTypes.string,
+    disabled: PropTypes.bool
 };

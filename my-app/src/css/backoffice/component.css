@@ -3,6 +3,8 @@
 
     1:= Button
     2:= inputLabel
+    3:= addCard
+    4:= inputCard
 
 *****************************************************/
 
@@ -34,6 +36,14 @@
     margin-left: .5rem;
 }
 
+.buttonRounded{
+    border-radius: 2rem;
+}
+
+.button-right {
+    display: flex;
+    justify-content: flex-end;
+}
 
 
 /* ----------- 2:= inputLabel -------- */
@@ -50,5 +60,118 @@
     border-radius: .5rem;
     margin-top: .5rem;
     background-color: #F1F1F1;
+}
+
+/* ----------- 2:= addCard -------- */
+
+.accessory {
+    background: var(--purple-gradient);
+}
+
+.console {
+    background: var(--red-gradient);
+}
+
+.addCard{
+    max-width: 100%;
+    height: 14rem;
+    position: relative;
+    padding: 3px;
+    margin: 2rem;
+    border-radius: 1rem;
+}
+
+.accessory .titleCard {
+    height: 100%;
+    width: 100%;
+    background: var(--background);
+    border-radius: .8rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.accessory .titleCard:hover{
+    background: var(--purple-gradient);
+    color: white;
+}
+
+.console .titleCard {
+    height: 100%;
+    width: 100%;
+    background: var(--background);
+    color: var(--red-gradient);
+    border-radius: .8rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.console .titleCard:hover{
+    background: var(--red-gradient);
+    color: white;
+}
+
+/* ----------- 2:= inputCard -------- */
+
+.inputLabel{
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 2rem;
+    color: black;
+}
+
+.inputLabel input{
+    padding: 1rem;
+    border: 1px solid white;
+    border-radius: .5rem;
+    margin-top: .5rem;
+    background-color: #F1F1F1;
+}
+
+.inputField {
+    margin-right: 10px;
+}
+
+.color-input {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.color-input::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.color-input::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.image-preview {
+    position: relative;
+    margin-top: 5px;
+    margin-left: 10rem;
+    width: 100%;
+    height: 30rem;
+}
+
+.image-preview img {
+    max-height: 30rem;
+    width: auto;
+}
+
+.base-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-height: 30rem;
+    width: auto;
 }
 

@@ -1,11 +1,14 @@
-
-
+@import url('https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&display=swap');
+@import url('https://fonts.cdnfonts.com/css/kantumruy');
 
 
 /* ----------- 1:= Constantes -------- */
 :root{
+  --white : #FFFFFF;
   --gris : #F5F5F5;
+  --background : #F8F8F8;
   --purple-gradient : linear-gradient(to bottom, #544297, #1B1531);
+  --red-gradient : linear-gradient(to bottom, #E63232, #801C1C);
 }
 
 
@@ -24,6 +27,26 @@ a{
 
 main{
   max-width: 576px;
+  background-color: var(--background);
+}
+
+h1{
+  font-family: 'Konkhmer Sleokchher', sans-serif;
+  letter-spacing: 2px;
+}
+
+h2{
+  font-family: 'Kantumruy', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+p{
+  font-family: 'Kantumruy', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 
@@ -44,6 +67,14 @@ main{
   width: 100%;
 }
 
+.w-50{
+  width: 50%;
+}
+
+.w-30{
+  width: 30%;
+}
+
 .h-100{
   min-height: 100vh;
 }
@@ -56,6 +87,14 @@ main{
   margin: auto;
 }
 
+.mt-2{
+  margin-top: 2rem;
+}
+
+.pt-2{
+  padding-top: 2rem;
+}
+
 .jc_spacebetween{
   justify-content: space-between;
 }
@@ -66,4 +105,23 @@ main{
 
 .text_uppercase{
   text-transform: uppercase;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 1rem;
+  background-color: var(--white); /* Fond blanc */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+}
+
+.error-message {
+  color: red;
+  margin-left: 5%;
 }
