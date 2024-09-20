@@ -76,6 +76,8 @@ export default function AddConsole() {
             setConsoleData(prevState => ({ ...prevState, price: parseFloat(value) || 0 }));
         } else if (name === 'optionColor') {
             setCurrentOption(prevState => ({ ...prevState, color: value }));
+        } else if (name === 'accessoryPrice') {
+            setCurrentAccessory(prevState => ({ ...prevState, price: parseFloat(value) || 0 }));
         }
     };
 
@@ -109,7 +111,8 @@ export default function AddConsole() {
 
     const addConsole = async () => {
         try {
-            await axios.post('/consoles', { name: consoleData.name, price: consoleData.price });
+            console.log(consoleData);
+            //await axios.post('/consoles', { name: consoleData.name, price: consoleData.price });
             setStep(2); 
         } catch (error) {
             setErrorMessage('Erreur lors de l\'ajout de la console.');
@@ -126,22 +129,26 @@ export default function AddConsole() {
             ...prevState,
             options: [...prevState.options, currentOption.name]
         }));
+        console.log(currentAccessory);
+        
         setCurrentOption({ name: '', images: [], color: '' });
     };
 
     const addAccessory = async () => {
-        if (currentAccessory.name.trim() === '' || currentAccessory.options.length === 0 || currentAccessory.price <= 0) {
-            setErrorMessage('Le nom de l\'accessoire, le prix et au moins une option sont requis.');
+        if (currentAccessory.name.trim() === '' || currentAccessory.options.length === 0) {
+            setErrorMessage('Le nom de l\'accessoireet au moins une option sont requis.');
             return;
-        }
+        } else (currentAccessory.price < 0)
+            setErrorMessage('Le prix de l\'accessoire doit être supérieur ou égal à 0.');
 
         try {
-            const response = await axios.post('/accessories', {
-                name: currentAccessory.name,
-                price: currentAccessory.price,
-                facultatif: currentAccessory.facultatif,
-                options: currentAccessory.options
-            });
+            console.log(currentAccessory);
+            // const response = await axios.post('/accessories', {
+            //     name: currentAccessory.name,
+            //     price: currentAccessory.price,
+            //     facultatif: currentAccessory.facultatif,
+            //     options: currentAccessory.options
+            // });
 
             // Réinitialiser l'état de l'accessoire ou procéder comme nécessaire
             setCurrentAccessory({ name: '', price: 0, facultatif: false, options: [] });
@@ -184,8 +191,8 @@ export default function AddConsole() {
                 </div>
             )}
             {step === 2 && (
-                <div className='row'>
-                    <div className='w-30 card'>
+                <div className='row centered'>
+                    <div className='w-50 card'>
                         <InputProduct
                             label="Nom de l'accessoire"
                             type='text'
@@ -215,22 +222,21 @@ export default function AddConsole() {
                             className="buttonRounded"
                         />
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
-                    </div>
-                    <div className='w-50'>
-                        <h2 className='pt-2'>Ajouter une option à l'accessoire</h2>
-                        <InputProduct
-                            label="Nom de l'option"
-                            type='text'
-                            placeholder="Nom de l'option"
-                            onChange={handleChange}
-                            name='optionName'
-                            value={currentOption.name}
-                        />
-                        <Button
-                            text="Ajouter l'option"
-                            onClick={addOption}
-                            className="buttonRounded"
-                        />
+                        <div className='mt-2'>
+                            <InputProduct
+                                label="Ajouter une option"
+                                type='text'
+                                placeholder="Nom de l'option"
+                                onChange={handleChange}
+                                name='optionName'
+                                value={currentOption.name}
+                            />
+                            <Button
+                                text="Ajouter l'option"
+                                onClick={addOption}
+                                className="buttonRounded"
+                            />
+                        </div>
                         {optionErrorMessage && <p className="error-message">{optionErrorMessage}</p>}
                     </div>
                 </div>
