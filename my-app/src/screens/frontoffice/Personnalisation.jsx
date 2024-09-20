@@ -151,7 +151,17 @@ const [updatedSections, setUpdatedSections] = useState({
 const [product, setProduct] = useState({
     name : '',
     price: 149,
-    attributes : []
+    attributes : [{
+        coque: 'blue',
+        sideCoque: 'blue',
+        ecran: 'black',
+        sideEcran: 'black',
+        boutons: 'black',
+        sideBoutons: 'black',
+        pads: 'yellow',
+        sidePads: 'yellow',
+        coqueArriere: 'blue',
+    }]
 });
 
 const handleOptionChange = (option, price, image = null, side = false) => {
@@ -233,7 +243,6 @@ const handleOptionChange = (option, price, image = null, side = false) => {
         }
 
         setProduct({...product, attributes: newOptions});
-        console.log(product);
         return newOptions;
     });
 
@@ -295,7 +304,7 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                         </div>
                         {activeSection === option && (
                             <div className="option-content">
-                                {option === 'coque' && <Coque view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
+                                {option === 'coque' && <Coque view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct} />}
                                 {option === 'coqueArriere' && view === 'side' && <CoqueArriere selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
                                 {option === 'boutons' && <Boutons view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
                                 {option === 'pads' && <Pads view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
