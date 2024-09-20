@@ -1,0 +1,261 @@
+
+:root {
+    --color-red: linear-gradient(135deg, #ff4b2b 0%, #ff416c 100%);
+    --color-blue: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+    --color-green: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+    --color-purple: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    --color-yellow: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    --color-black: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+    --color-white: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+}
+
+.personnalisation-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #F8F8F8;
+}
+
+.personnalisation-title {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 2rem;
+    color: #544297; /* Couleur du titre */
+    margin-top: 2rem;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); /* Amélioration de l'ombre */
+
+}
+
+.personnalisation-image {
+    display: block;
+    margin: 10px auto;
+    max-width: 300px;
+    border-radius: 10px;
+    transform: perspective(500px) rotateX(5deg); /* Crée un léger effet 3D */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.personnalisation-image:hover {
+    transform: perspective(500px) rotateX(0deg) translateY(-10px); /* Effet d'élévation au survol */
+    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.4); /* Accentuation de l'ombre lors du hover */
+}
+
+.form-container {
+    margin-top: 33rem;
+
+    margin-left: 2rem;
+    width: 80%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Fichier Personnalisation.css */
+
+.section-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.section-option span {
+    font-weight: bold;
+    font-size: 0.9rem;
+
+}
+
+.section-option i {
+    font-size: 14px; /* Taille de l'icône */
+    transition: transform 0.3s ease;
+}
+
+.section-option i.fa-chevron-down {
+    transform: rotate(0deg); /* Fait pointer la flèche vers le bas */
+}
+
+
+
+.option-content {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+/* Ajoute ce CSS pour afficher les labels l'un au-dessus de l'autre */
+.option-content label {
+    display: block;
+    margin-bottom: 10px; /* Espace entre les options */
+}
+.option-content label input[type="radio"] {
+    margin-right: 10px; /* Ajuste l'espace entre le bouton et le texte du label */
+}
+.option-content label input[type="checkbox"] {
+    margin-right: 10px; /* Ajuste l'espace entre le bouton et le texte du label */
+}
+.color-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.color-circle {
+    width: 15px; /* Taille du bouton */
+    height: 15px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.color-circle:hover {
+    transform: scale(1.1); /* Zoom sur le bouton au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.color-circle.red {
+    background: var(--color-red);
+}
+
+.color-circle.blue {
+    background: var(--color-blue);
+}
+
+.color-circle.green {
+    background: var(--color-green);
+}
+
+.color-circle.purple {
+    background: var(--color-purple);
+}
+
+.color-circle.yellow {
+    background: var(--color-yellow);
+}
+
+.color-circle.black {
+    background: var(--color-black);
+}
+
+.color-circle.white {
+    background: var(--color-white);
+}
+
+.price-container {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.price-container h3 {
+    font-size: 1.8rem;
+}
+.price-container h1 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    margin-left: 0.2rem;
+    color: #c5c3cd; /* Couleur du titre */
+}
+
+
+.price-container p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #908f91; /* Couleur du titre */
+
+    
+}
+
+.submit-btn {
+    margin-left: 17rem;
+
+    width: 30%;
+    background-color: #544297;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-align: center;
+    background: linear-gradient(90deg, #3f2b87, #8e7ff1);
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #6a5acd;
+}
+
+.submit-btn i {
+    margin-right: 10px;
+}
+/*test*/
+/* Conteneur de l'image de personnalisation */
+.console-viewer {
+    position: relative;
+    width: 300px; /* Ajuste la taille pour qu'elle corresponde à celle de l'image d'origine */
+    height: auto;
+    margin: 20px auto; /* Centrer le conteneur */
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+/* Styles communs pour chaque image de la console */
+.personnalisation-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Garde l'image dans la zone sans la déformer */
+    z-index: 1; /* Superpose les images dans le bon ordre */
+    transition: all 0.3s ease; /* Animation douce pour les changements d'options */
+}
+
+/* Ajustement pour chaque couche, en s'assurant que l'image s'empile correctement */
+.personnalisation-image.boutons {
+    z-index: 2; /* Les boutons au-dessus de la coque */
+}
+
+.personnalisation-image.ecran {
+    z-index: 3; /* L'écran par-dessus les autres couches */
+}
+.rotate-btn {
+    color: #544297; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 50px; /* Bordures arrondies */
+    padding: 10px 15px; /* Espacement intérieur */
+    font-size: 16px; /* Taille de la police */
+    font-weight: bold; /* Mettre le texte en gras */
+    cursor: pointer; /* Curseur en forme de main */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition fluide */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    margin-top: 40px; /* Marges au-dessus */
+    margin-left: 78px;
+}
+
+
+
+.rotate-btn:active {
+    transform: scale(0.95); /* Légère réduction à l'activation (au clic) */
+}
+
+.rotate-btn i {
+    margin-right: 8px; /* Espacement entre l'icône et le texte */
+}
+

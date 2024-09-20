@@ -1,0 +1,54 @@
+/*****************************************************
+                    Sommaire
+
+    1:= Button
+    2:= inputLabel
+
+*****************************************************/
+
+
+
+/* ----------- 1:= Button -------- */
+.button{
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    margin: auto;
+    width: 90%;
+    border: 2px solid black;
+    border-radius: .5rem;
+    font-size: 1rem;
+    align-items: center;
+    margin-top: 2rem;
+    font-weight: bold;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: white;
+    color: black;
+}
+
+.button svg{
+    margin-left: .5rem;
+}
+
+
+
+/* ----------- 2:= inputLabel -------- */
+.inputLabel{
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.inputLabel input{
+    padding: 1rem;
+    border: 1px solid white;
+    border-radius: .5rem;
+    margin-top: .5rem;
+    background-color: #F1F1F1;
+}
+
