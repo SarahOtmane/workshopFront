@@ -1,170 +1,153 @@
 import { useState } from 'react';
-
 import '../../css/backoffice/screen.css';
 import InputProduct from '../../components/backoffice/inputProduct';
 import Button from '../../components/button';
-import axiosInstance from '../../services/axiosConfig';
+import axios from '../../services/axiosConfig';
 
 export default function AddConsole() {
-
     const [step, setStep] = useState(1);
-    const [currentOption, setCurrentOption] = useState({ name: '', images: [], optional: false, price: 0 });
+    const [currentOption, setCurrentOption] = useState({ name: '', images: [], color: '' });
+    const [currentAccessory, setCurrentAccessory] = useState({ name: '', price: 0, facultatif: false, options: [] });
+    const [consoleData, setConsoleData] = useState({ name: "", price: 0 });
     const [errorMessage, setErrorMessage] = useState('');
     const [optionErrorMessage, setOptionErrorMessage] = useState('');
-
-    const [consoleData, setConsoleData] = useState({
-        name: "",
-        color: "#000000",
-        price: 0,
-        options: [],
-    });
 
     const getDominantColor = (imageUrl) => {
         return new Promise((resolve, reject) => {
             const img = new Image();
             img.crossOrigin = 'Anonymous';
             img.src = imageUrl;
-    
+
             img.onload = () => {
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 canvas.width = img.width;
                 canvas.height = img.height;
                 ctx.drawImage(img, 0, 0);
-    
+
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 const data = imageData.data;
-    
                 const colorCount = {};
                 let dominantColor = '';
                 let maxCount = 0;
-    
+
                 for (let i = 0; i < data.length; i += 4) {
-                    const r = data[i];
-                    const g = data[i + 1];
-                    const b = data[i + 2];
+                    const r = data[i], g = data[i + 1], b = data[i + 2];
                     const color = `rgb(${r},${g},${b})`;
-    
-                    if (color === 'rgb(248,248,248)' || color === 'rgb(43,40,49)' || color === 'rgb(0,0,0)') {
-                        continue;
-                    }
-    
-                    if (colorCount[color]) {
-                        colorCount[color]++;
-                    } else {
-                        colorCount[color] = 1;
-                    }
-    
+
+                    if (color === 'rgb(248,248,248)' || color === 'rgb(43,40,49)' || color === 'rgb(0,0,0)') continue;
+
+                    colorCount[color] = (colorCount[color] || 0) + 1;
+
                     if (colorCount[color] > maxCount) {
                         maxCount = colorCount[color];
                         dominantColor = color;
                     }
                 }
-    
                 resolve(dominantColor);
             };
-    
-            img.onerror = (err) => {
-                reject(err);
-            };
+
+            img.onerror = (err) => reject(err);
         });
     };
 
     const handleChange = async (e) => {
         const { name, value, files, type, checked } = e.target;
-        setErrorMessage(''); // Réinitialiser le message d'erreur lors de la modification des champs
-        setOptionErrorMessage(''); // Réinitialiser le message d'erreur des options lors de la modification des champs
+        setErrorMessage('');
+        setOptionErrorMessage('');
+
         if (type === 'checkbox') {
+            setCurrentAccessory(prevState => ({ ...prevState, facultatif: checked }));
+        } else if (files && files.length > 0) {
+            await handleFileUpload(name, files);
+        } else {
+            handleInputChange(name, value);
+        }
+    };
+
+    const handleInputChange = (name, value) => {
+        if (name === 'accessoryName') {
+            setCurrentAccessory(prevState => ({ ...prevState, name: value }));
+        } else if (name === 'optionName') {
+            setCurrentOption(prevState => ({ ...prevState, name: value }));
+        } else if (name === 'consoleName') {
+            setConsoleData(prevState => ({ ...prevState, name: value }));
+        } else if (name === 'consolePrice') {
+            setConsoleData(prevState => ({ ...prevState, price: parseFloat(value) || 0 }));
+        } else if (name === 'optionColor') {
+            setCurrentOption(prevState => ({ ...prevState, color: value }));
+        }
+    };
+
+    const handleFileUpload = async (name, files) => {
+        const filePromises = Array.from(files).map(file => {
+            const imageUrl = URL.createObjectURL(file);
+            return getDominantColor(imageUrl).then(dominantColor => ({
+                name: file.name,
+                url: imageUrl,
+                color: dominantColor
+            }));
+        });
+
+        const images = await Promise.all(filePromises);
+
+        if (name === 'accessoryImages') {
+            setCurrentAccessory(prevState => ({
+                ...prevState,
+                options: prevState.options.map(option => ({
+                    ...option,
+                    images: option.images.concat(images)
+                }))
+            }));
+        } else if (name === 'optionImages') {
             setCurrentOption(prevState => ({
                 ...prevState,
-                optional: checked
+                images: [...prevState.images, ...images]
             }));
-        } else if (files && files.length > 0) {
-            const filePromises = Array.from(files).map(file => {
-                const imageUrl = URL.createObjectURL(file);
-                return getDominantColor(imageUrl).then(dominantColor => ({
-                    name: file.name,
-                    url: imageUrl,
-                    color: dominantColor
-                }));
-            });
+        }
+    };
 
-            const images = await Promise.all(filePromises);
-
-            if (name === 'optionImages') {
-                setCurrentOption(prevState => ({
-                    ...prevState,
-                    images: [...prevState.images, ...images]
-                }));
-            }
-        } else {
-            if (name === 'optionName') {
-                setCurrentOption(prevState => ({
-                    ...prevState,
-                    name: value
-                }));
-            } else if (name === 'optionPrice') {
-                setCurrentOption(prevState => ({
-                    ...prevState,
-                    price: parseFloat(value) || 0
-                }));
-            } else {
-                setConsoleData(prevState => ({
-                    ...prevState,
-                    [name]: value
-                }));
-            }
+    const addConsole = async () => {
+        try {
+            await axios.post('/consoles', { name: consoleData.name, price: consoleData.price });
+            setStep(2); 
+        } catch (error) {
+            setErrorMessage('Erreur lors de l\'ajout de la console.');
+            console.error('Error creating console:', error);
         }
     };
 
     const addOption = () => {
-        if (currentOption.name.trim() === '' || currentOption.images.length === 0) {
-            setOptionErrorMessage('Le nom de l\'option et au moins une image sont requis.');
+        if (currentOption.name.trim() === '') {
+            setOptionErrorMessage('Le nom de l\'option est requis.');
             return;
         }
-        const newOption = { ...currentOption };
-        if (newOption.optional) {
-            newOption.images.unshift({ name: 'none', url: 'none', color: 'none' });
-        }
-        setConsoleData(prevState => ({
+        setCurrentAccessory(prevState => ({
             ...prevState,
-            options: [...prevState.options, newOption]
+            options: [...prevState.options, currentOption.name]
         }));
-        setCurrentOption({ name: '', images: [], optional: false, price: 0 });
+        setCurrentOption({ name: '', images: [], color: '' });
     };
 
-    const logConsoleData = () => {
-        console.log(consoleData);
-    };
+    const addAccessory = async () => {
+        if (currentAccessory.name.trim() === '' || currentAccessory.options.length === 0 || currentAccessory.price <= 0) {
+            setErrorMessage('Le nom de l\'accessoire, le prix et au moins une option sont requis.');
+            return;
+        }
 
-    const isNextButtonDisabled = () => {
-        return consoleData.name.trim() === '' || consoleData.price <= 0;
-    };
-
-    // envoyer les données de la console à l'API
-    const saveConsoleToDB = async () => {
         try {
-            const response = await axiosInstance.post('/consoles', {
-                name: consoleData.name,
-                price: consoleData.price,
+            const response = await axios.post('/accessories', {
+                name: currentAccessory.name,
+                price: currentAccessory.price,
+                facultatif: currentAccessory.facultatif,
+                options: currentAccessory.options
             });
 
-            // Gérer la réponse si nécessaire
-            console.log('Console ajoutée avec succès:', response.data);
-
-            // Passer à l'étape suivante pour ajouter les accessoires
-            setStep(2);
+            // Réinitialiser l'état de l'accessoire ou procéder comme nécessaire
+            setCurrentAccessory({ name: '', price: 0, facultatif: false, options: [] });
         } catch (error) {
-            console.error('Erreur lors de l\'ajout de la console:', error);
-            setErrorMessage('Erreur lors de l\'ajout de la console. Veuillez réessayer.');
-        }
-    };
-
-    const handleNextClick = () => {
-        if (isNextButtonDisabled()) {
-            setErrorMessage('Des champs sont manquants ou incorrects.');
-        } else {
-            saveConsoleToDB();
+            setErrorMessage('Erreur lors de l\'ajout de l\'accessoire.');
+            console.error('Error creating accessory:', error);
         }
     };
 
@@ -176,26 +159,25 @@ export default function AddConsole() {
             {step === 1 && (
                 <div className='centered'>
                     <div className='w-50 card'>
-                        <InputProduct 
-                            label='Nom' 
-                            placeholder='nom de votre produit' 
+                        <InputProduct
+                            label='Nom de la console'
+                            placeholder='Nom de votre produit'
                             onChange={handleChange}
-                            name='name'
+                            name='consoleName'
                             value={consoleData.name}
                         />
-                        <InputProduct 
-                            label='Prix'
-                            placeholder='prix de votre produit' 
-                            type='number' 
+                        <InputProduct
+                            label='Prix de la console'
+                            placeholder='Prix de votre produit'
+                            type='number'
                             onChange={handleChange}
-                            name='price'
+                            name='consolePrice'
                             value={consoleData.price}
                         />
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
                         <Button
-                            text='Suivant'
-                            onClick={handleNextClick}
-                            icon={false}
+                            text='Ajouter la console'
+                            onClick={addConsole}
                             className={`buttonRounded`}
                         />
                     </div>
@@ -204,77 +186,55 @@ export default function AddConsole() {
             {step === 2 && (
                 <div className='row'>
                     <div className='w-30 card'>
-                        <InputProduct 
+                        <InputProduct
+                            label="Nom de l'accessoire"
+                            type='text'
+                            placeholder="Nom de l'accessoire"
+                            onChange={handleChange}
+                            name='accessoryName'
+                            value={currentAccessory.name}
+                        />
+                        <InputProduct
+                            label="Prix de l'accessoire"
+                            type='number'
+                            placeholder="Prix de l'accessoire"
+                            onChange={handleChange}
+                            name='accessoryPrice'
+                            value={currentAccessory.price}
+                        />
+                        <InputProduct
+                            label="Accessoire facultatif"
+                            type="checkbox"
+                            name="facultatif"
+                            checked={currentAccessory.facultatif}
+                            onChange={handleChange}
+                        />
+                        <Button
+                            text="Ajouter l'accessoire"
+                            onClick={addAccessory}
+                            className="buttonRounded"
+                        />
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    </div>
+                    <div className='w-50'>
+                        <h2 className='pt-2'>Ajouter une option à l'accessoire</h2>
+                        <InputProduct
                             label="Nom de l'option"
                             type='text'
-                            placeholder="nom de l'option"
+                            placeholder="Nom de l'option"
                             onChange={handleChange}
                             name='optionName'
                             value={currentOption.name}
                         />
-                        <InputProduct 
-                            label="Prix de l'option"
-                            type='number'
-                            placeholder="prix de l'option"
-                            onChange={handleChange}
-                            name='optionPrice'
-                            value={currentOption.price}
-                        />
-                        <InputProduct 
-                            label='Images (webp)'
-                            type='file'
-                            onChange={handleChange}
-                            name='optionImages'
-                            multiple
-                        />
-                        <InputProduct
-                            label="Option facultative"
-                            type="checkbox" 
-                            name="optional" 
-                            checked={currentOption.optional} 
-                            onChange={handleChange} 
+                        <Button
+                            text="Ajouter l'option"
+                            onClick={addOption}
+                            className="buttonRounded"
                         />
                         {optionErrorMessage && <p className="error-message">{optionErrorMessage}</p>}
-                        <div className='row'>
-                            <Button
-                                text="Ajouter l'option"
-                                onClick={addOption}
-                                icon={false}
-                                className="buttonRounded"
-                            />
-                        </div>
-                    </div>
-                    <div className='w-50'>
-                        <h2 className='pt-2'>Prévisualisation</h2>
-                        {consoleData.imageUrl && (
-                            <div className="image-preview">
-                                <img src={consoleData.imageUrl} alt="Preview" />
-                            </div>
-                        )}
-                        {consoleData.options.length > 0 && (
-                            <div className="image-preview">
-                                {consoleData.options.map((option, index) => (
-                                    <div key={index}>
-                                        {option.images[0].url !== 'none' && (
-                                            <img key={`${index}-0`} src={option.images[0].url} alt={`Option ${index} Image 0`} className="base-image" />
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                        {consoleData.options.length > 0 && (
-                            <div className="button-right">
-                                <Button
-                                    text="Ajouter la console"
-                                    onClick={logConsoleData}
-                                    icon={false}
-                                    className="buttonRounded"
-                                />
-                            </div>
-                        )}
                     </div>
                 </div>
             )}
         </main>
     );
-}
+};
