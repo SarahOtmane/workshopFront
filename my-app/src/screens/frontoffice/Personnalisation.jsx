@@ -4,6 +4,7 @@ import '../../css/frontoffice/Personnalisation.css';
 
 // Importation des composants
 import Coque from '../../components/Coque';
+import CoqueArriere from '../../components/CoqueArriere'; // Import du nouveau composant
 import Boutons from '../../components/Boutons';
 import Pads from '../../components/Pads';
 import Ecran from '../../components/Ecran';
@@ -36,6 +37,10 @@ import sidePadBlack from '../../assets/side/GB-Side-GB_SIDE_PAD_Black0024.png';
 import frontIpsBlack from '../../assets/front/GB-Front-GB_FRONT_IPS_BLACK.png';
 import frontIpsWhite from '../../assets/front/GB-Front-GB_FRONT_IPS_DMG.png';
 import sideIpsBlack from '../../assets/side/GB-Side-GB-SIDE-IPS_Black.png';
+
+
+import sideBackShellBlue from '../../assets/side/GB-Side-GB_SIDE_Blue0024DUAL.png';
+import sideBackShellBlack from '../../assets/side/GB-Side-GB_SIDE_Black0024DUAL.png';
 
 export const getSideCoqueFromFront = (frontImage) => {
     switch (frontImage) {
@@ -125,6 +130,8 @@ export default function Personnalisation() {
         sideBoutons: sideButtonBlack,
         pads: frontPadYellow,
         sidePads: sidePadYellow,
+        coqueArriere: sideBackShellBlue,  // Ajout de la coque arrière
+
     });
 
     const [totalPrice, setTotalPrice] = useState(149.00);
@@ -137,6 +144,8 @@ const [updatedSections, setUpdatedSections] = useState({
     ecran: false,
     batterie: false,
     accessoires: false,
+    coqueArriere: false, // Coque arrière
+
 });
 
 const handleOptionChange = (option, price, image = null, side = false) => {
@@ -149,6 +158,9 @@ const handleOptionChange = (option, price, image = null, side = false) => {
         const currentOptionImage = prevOptions[optionKey];
         if (image && currentOptionImage !== image) {
             newOptions[optionKey] = image;
+            if (option === 'coqueArriere') {
+                newOptions.coqueArriere = image;
+            }
 
             // Gestion du changement d'options pour la coque
             if (option === 'coque') {
@@ -250,6 +262,8 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                             <img src={selectedOptions.boutons} alt="boutons front" className="personnalisation-image boutons" />
                             <img src={selectedOptions.ecran} alt="écran front" className="personnalisation-image ecran" />
                             <img src={selectedOptions.pads} alt="pads front" className="personnalisation-image pads" />
+                            
+
                         </>
                     ) : (
                         <>
@@ -257,13 +271,15 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                             <img src={selectedOptions.sideBoutons} alt="boutons side" className="personnalisation-image boutons" />
                             <img src={selectedOptions.sideEcran} alt="écran side" className="personnalisation-image ecran" />
                             <img src={selectedOptions.sidePads} alt="pads side" className="personnalisation-image pads" />
+                            <img src={selectedOptions.coqueArriere} alt="coque arrière" className="personnalisation-image coque-arriere" style={{ zIndex: 4 }} />
+
                         </>
                     )}
                 </div>
             </div>
 
             <div className="form-container">
-                {['coque', 'boutons', 'pads', 'ecran', 'batterie', 'accessoires'].map((option) => (
+                {['coque', 'coqueArriere', 'boutons', 'pads', 'ecran', 'batterie', 'accessoires'].map((option) => (
                     <div key={option} className="form-group">
                         <div className="section-option" onClick={() => setActiveSection(activeSection === option ? null : option)}>
                             <span>{option.toUpperCase()}</span>
@@ -272,6 +288,7 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                         {activeSection === option && (
                             <div className="option-content">
                                 {option === 'coque' && <Coque view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
+                                {option === 'coqueArriere' && view === 'side' && <CoqueArriere selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
                                 {option === 'boutons' && <Boutons view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
                                 {option === 'pads' && <Pads view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
                                 {option === 'ecran' && <Ecran view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
