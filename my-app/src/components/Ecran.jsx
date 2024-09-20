@@ -26,7 +26,8 @@ const Ecran = ({ view, selectedOptions, handleOptionChange }) => {
                                 'ecran',
                                 20, // Exemple de prix
                                 image,
-                                view === 'side'
+                                view === 'side',
+                                color
                             )
                         }
                     />

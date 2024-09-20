@@ -29,7 +29,8 @@ const Pads = ({ view, selectedOptions, handleOptionChange }) => {
                                 'pads',
                                 10, // Exemple de prix
                                 image,
-                                view === 'side'
+                                view === 'side',
+                                color
                             )
                         }
                     />

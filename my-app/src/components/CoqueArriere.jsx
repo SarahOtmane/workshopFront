@@ -22,7 +22,8 @@ const CoqueArriere = ({ selectedOptions, handleOptionChange }) => {
                                 'coqueArriere',
                                 10,  // Exemple de prix
                                 image,
-                                true  // Car cette option affecte seulement la vue "side"
+                                true,  // Car cette option affecte seulement la vue "side"
+                                color
                             )
                         }
                     />

@@ -30,7 +30,8 @@ const Coque = ({ view, selectedOptions, handleOptionChange }) => {
                                 'coque',
                                 10, // Exemple de prix
                                 image,
-                                view === 'side'
+                                view === 'side',
+                                color
                             )
                         }
                     />

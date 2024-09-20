@@ -19,7 +19,7 @@ const Boutons = ({ view, selectedOptions, handleOptionChange }) => {
             image = color === 'black' ? sideButtonBlack : color === 'red' ? sideButtonRed : sideButtonBlue;
         }
 
-        handleOptionChange('boutons', price, image, view === 'side');
+        handleOptionChange('boutons', price, image, view === 'side', color);
     };
 
     return (
