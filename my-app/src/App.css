@@ -5,6 +5,7 @@
 /* ----------- 1:= Constantes -------- */
 :root{
   --gris : #F5F5F5;
+  --purple-gradient : linear-gradient(to bottom, #544297, #1B1531);
 }
 
 
