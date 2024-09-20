@@ -27,7 +27,7 @@
 .header img {
     margin: 0 auto;
     margin-top: 2.5rem;
-    z-index: 5;
+    z-index: 1;
     display: block; /* Ensures the image behaves like a block element */
 }
 
@@ -36,7 +36,7 @@
     position: absolute;
     top: 2.3rem;
     left: 2rem;
-    z-index: 1;
+    z-index: 5;
     -webkit-user-select: none;
     user-select: none;
 }

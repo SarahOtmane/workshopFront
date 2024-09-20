@@ -2,7 +2,8 @@
     width: 100%;
     height: auto; /* Laisser l'auto-height pour s'adapter au contenu */
     max-width: 1200px;
-    background-color: #e4e3e3;
+    overflow: hidden;
+    background-color: var(--background);
     position: relative;
     box-sizing: border-box; /* Inclut le padding dans la hauteur totale */
 }

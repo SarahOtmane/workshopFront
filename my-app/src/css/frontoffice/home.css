@@ -2,7 +2,6 @@
 
 .home {
     position: relative;
-    background-color: #e4e3e3; /* La couleur de fond si le fond d'écran est supprimé */
     overflow: hidden;
 }
 
