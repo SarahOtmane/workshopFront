@@ -1,13 +1,27 @@
-.header {
+
+/* .header {
     max-width: 576px;
     border-bottom: 1px solid black;
     padding-bottom: 2.5rem;
     display: flex;
     justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    position: relative; /* To position the menu icon */
-    background-color: #ffffff
-    ;
+    /* align-items: center; /* Center content vertically */
+    /* position: relative; /* To position the menu icon */
+    /* background-color: #ffffff */ 
+
+    
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.header img{
+    margin: auto;
+    margin-top: 2.5rem;
+}
+
+.header{
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-bottom: 2.5rem;
+    position: relative;
 }
 
 .header img {
@@ -62,7 +76,6 @@
                 opacity 0.55s ease;
 }
 
-
 #menuToggle span:first-child{
     transform-origin: 0% 0%;
 }
@@ -74,7 +87,7 @@
 #menuToggle input:checked ~ span{
     opacity: 1;
     transform: rotate(45deg) translate(-2px, -1px);
-    background: black;
+    background: rgb(255, 255, 255);
 }
 
 #menuToggle input:checked ~ span:nth-last-child(3){
@@ -82,14 +95,13 @@
     transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-#menuToggle input:checked ~ span:nth-last-child(2){
+#menuToggle input:checked ~ span:nth-last-child(4){
     opacity: 1;
-    transform: rotate(-45deg) translate(0, -1px);
+    transform: rotate(-45deg) translate(-5px, 2px);
 }
 
 #menu{
     position: absolute;
-    width: 100vw;
     height: 90vh;
     margin: -100px 0 0 0;
     padding: 50px;
@@ -97,23 +109,45 @@
     padding-left: 6rem;
     left: -100px;
     
-    background: white;
+    background: var(--purple-gradient);
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
     /* to stop flickering of text in safari */
     
     transform-origin: 0% 0%;
-    transform: translate(100%, 0);
+    transform: translateX(-100%);
     
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    display: none;
+}
+
+@media (max-width: 1920px) {
+    #menu {
+        width: 30vw;
+    }
+}
+
+@media (max-width: 992px) {
+    #menu {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu {
+        width: 50vw;
+    }
+}
+
+@media (max-width: 576px) {
+    #menu {
+        width: 60vw;
+    }
 }
 
 #menu.open{
-    display: block;
+    transform: translateX(0);
 }
 
 #menu li{
@@ -122,6 +156,10 @@
     font-size: 1.1rem;
     color: #000;
     font-weight: bolder;
+    font-family: Arial;
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 0.4em;
 }
 
 #menu li.end{
@@ -131,15 +169,37 @@
 
 #menu li a{
     padding: 10px 0;
-    color: #000;
     font-weight: bolder;
 }
 
+#menu li a.active {
+    color: rgba(255, 255, 255, 1); /* Couleur blanche avec 100% d'opacité */
+}
+
+#menu li a:not(.active) {
+    color: rgba(255, 255, 255, 0.45); /* Couleur blanche avec 75% d'opacité */
+}
+
 #menu li + li{
-    border-top: 1px solid #E4A2BE;
+    border-top: 1px solid #994adb;
 }
 
 #menuToggle input:checked ~ ul{
     transform: none;
     opacity: 1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    display: none;
+}
+
+#menuToggle input:checked ~ .overlay {
+    display: block;
 }
