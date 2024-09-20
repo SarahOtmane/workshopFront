@@ -3,7 +3,7 @@
     height: 300px; /* Hauteur du carrousel */
     max-width: 1200px;
     overflow: hidden;
-    background-color: #e4e3e3;
+    background-color: var(--background)
     position: relative;
     padding: 2rem;
     box-sizing: border-box; /* Inclut le padding dans la hauteur totale */

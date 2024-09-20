@@ -158,7 +158,7 @@ export default function AddConsole() {
             </div>
             {step === 1 && (
                 <div className='centered'>
-                    <div className='w-50 card'>
+                    <div className='w-50 card-admin'>
                         <InputProduct
                             label='Nom de la console'
                             placeholder='Nom de votre produit'
@@ -185,7 +185,7 @@ export default function AddConsole() {
             )}
             {step === 2 && (
                 <div className='row'>
-                    <div className='w-30 card'>
+                    <div className='w-30 card-admin'>
                         <InputProduct
                             label="Nom de l'accessoire"
                             type='text'
