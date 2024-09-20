@@ -111,7 +111,6 @@ export default function AddConsole() {
 
     const addConsole = async () => {
         try {
-            console.log(consoleData);
             await axios.post('/consoles', { name: consoleData.name, price: consoleData.price });
             setStep(2); 
         } catch (error) {
@@ -129,7 +128,6 @@ export default function AddConsole() {
             ...prevState,
             options: [...prevState.options, currentOption.name]
         }));
-        console.log(currentAccessory);
         
         setCurrentOption({ name: '', images: [], color: '' });
     };
@@ -142,7 +140,6 @@ export default function AddConsole() {
             setErrorMessage('Le prix de l\'accessoire doit être supérieur ou égal à 0.');
 
         try {
-            console.log(currentAccessory);
             const response = await axios.post('/accessories', {
                 name: currentAccessory.name,
                 price: currentAccessory.price,
