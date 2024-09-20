@@ -148,6 +148,12 @@ const [updatedSections, setUpdatedSections] = useState({
 
 });
 
+const [product, setProduct] = useState({
+    name : '',
+    price: 149,
+    attributes : []
+});
+
 const handleOptionChange = (option, price, image = null, side = false) => {
     const optionKey = side ? `side${option.charAt(0).toUpperCase() + option.slice(1)}` : option;
 
@@ -226,6 +232,8 @@ const handleOptionChange = (option, price, image = null, side = false) => {
             }
         }
 
+        setProduct({...product, attributes: newOptions});
+        console.log(product);
         return newOptions;
     });
 
