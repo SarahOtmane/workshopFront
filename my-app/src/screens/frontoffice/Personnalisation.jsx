@@ -305,12 +305,12 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                         {activeSection === option && (
                             <div className="option-content">
                                 {option === 'coque' && <Coque view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct} />}
-                                {option === 'coqueArriere' && view === 'side' && <CoqueArriere selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
-                                {option === 'boutons' && <Boutons view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
-                                {option === 'pads' && <Pads view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
-                                {option === 'ecran' && <Ecran view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
-                                {option === 'batterie' && <Batterie selectedOptions={selectedOptions} handleRadioChange={handleOptionChange} />}
-                                {option === 'accessoires' && <Accessoires selectedOptions={selectedOptions} handleRadioChange={handleOptionChange} />}
+                                {option === 'coqueArriere' && view === 'side' && <CoqueArriere selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct}  />}
+                                {option === 'boutons' && <Boutons view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct}  />}
+                                {option === 'pads' && <Pads view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct}  />}
+                                {option === 'ecran' && <Ecran view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct}  />}
+                                {option === 'batterie' && <Batterie selectedOptions={selectedOptions} handleRadioChange={handleOptionChange} product={product} setProduct={setProduct}  />}
+                                {option === 'accessoires' && <Accessoires selectedOptions={selectedOptions} handleRadioChange={handleOptionChange} product={product} setProduct={setProduct}  />}
                             </div>
                         )}
                     </div>
