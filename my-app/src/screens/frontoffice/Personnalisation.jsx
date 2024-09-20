@@ -131,6 +131,7 @@ export default function Personnalisation() {
         pads: frontPadYellow,
         sidePads: sidePadYellow,
         coqueArriere: sideBackShellBlue,  // Ajout de la coque arrière
+        batterie: 'Sans'
 
     });
 
@@ -161,8 +162,8 @@ const [product, setProduct] = useState({
         pads: 'yellow',
         sidePads: 'yellow',
         coqueArriere: 'blue',
-        batterie: false,
-        accessoires: false
+        batterie: 'Sans',
+        accessoires: ''
     }]
 });
 
@@ -252,14 +253,15 @@ const handleOptionChange = (option, price, image = null, side = false, color) =>
                     [option]: true,
                 }));
             }
-            console.log(attributesOfProduct);
-            setProduct({...product, attributesOfProduct});
         }
         return newOptions;
     });
 
+    
     // Cas de batterie et accessoires (pas d'image, seulement un prix)
     if ((option === 'batterie' || option === 'accessoires') && !updatedSections[option]) {
+        option === 'accessoires'  ? attributesOfProduct[0].accessoires = color : attributesOfProduct[0].batterie = color ;
+        setProduct({...product, attributesOfProduct});
         setTotalPrice((prevPrice) => prevPrice + price);
 
         // Marquer comme mise à jour pour empêcher de l'augmenter à nouveau
