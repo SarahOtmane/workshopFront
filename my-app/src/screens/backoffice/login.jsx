@@ -24,7 +24,7 @@ export default function Login(){
             const token = response.data.token;
 
             addToken(token);
-            navigate('/admin/panel');
+            navigate('/admin/add-console');
             
         } catch (error) {
             const status = error.response ? error.response.status : 500;

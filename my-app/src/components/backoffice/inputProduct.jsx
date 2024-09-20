@@ -10,7 +10,7 @@ export default function InputProduct({label, type = "text", placeholder = "", on
                 name={name} 
                 onChange={onChange}
                 {...(type !== 'file' && { value })}
-                {...(type === 'file' && { accept: '.webp' })}
+                {...(type === 'file' && { accept: '.webp .png .jpg' })}
                 {...(type === 'checkbox' && { checked: value })}
                 className={type === 'color' ? 'color-input' : 'inputField'}
             />
