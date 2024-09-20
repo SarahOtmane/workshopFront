@@ -197,7 +197,7 @@ export default function Personnalisation() {
             <h1 className="personnalisation-title" style={{ color: '#544297' }}>{title || "Personnalisation de Console"}</h1>
 
             <button className="rotate-btn" onClick={toggleView}>
-                {view === 'front' ? "Voir le côté" : "Voir l'avant"}
+                {view === 'front' ? "Side" : "Front"}
             </button>
 
             <div className="console-viewer">
