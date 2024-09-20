@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../../css/frontoffice/Personnalisation.css';
 
+import axiosInstance from '../../services/axiosConfig';
+
 // Importation des composants
 import Coque from '../../components/Coque';
 import CoqueArriere from '../../components/CoqueArriere'; // Import du nouveau composant
@@ -277,6 +279,27 @@ const handleOptionChange = (option, price, image = null, side = false, color) =>
         setView((prevView) => (prevView === 'front' ? 'side' : 'front'));
     };
 
+    const createProduct = async() =>{
+        try {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let name = '';
+            const length = 6;
+
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                name += characters[randomIndex];
+            }
+
+            name = 'Gameboy DMG ' + name;
+            const newProduct = product;
+            newProduct.name = name;
+            const response = await axiosInstance.post('/products', newProduct);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Erreur lors de l\'enregistrement de l\'utilisateur:', error);
+        }
+    }
+
     return (
         <div className="personnalisation-container">
             <h1 className="personnalisation-title" style={{ color: '#544297' }}>{title || "Personnalisation de Console"}</h1>
@@ -336,7 +359,7 @@ const handleOptionChange = (option, price, image = null, side = false, color) =>
                 <h1>Prix total</h1>
                 <p>Acompte (30%) : {(totalPrice * 0.3).toFixed(2)}€</p>
                 <p>Livraison dans 35 - 40 jours</p>
-                <button className="submit-btn">
+                <button className="submit-btn" onClick={createProduct}>
                     <i className="fas fa-shopping-cart"></i> 
                 </button>
             </div>
