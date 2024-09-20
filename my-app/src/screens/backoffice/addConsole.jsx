@@ -112,7 +112,7 @@ export default function AddConsole() {
     const addConsole = async () => {
         try {
             console.log(consoleData);
-            //await axios.post('/consoles', { name: consoleData.name, price: consoleData.price });
+            await axios.post('/consoles', { name: consoleData.name, price: consoleData.price });
             setStep(2); 
         } catch (error) {
             setErrorMessage('Erreur lors de l\'ajout de la console.');
@@ -143,14 +143,12 @@ export default function AddConsole() {
 
         try {
             console.log(currentAccessory);
-            // const response = await axios.post('/accessories', {
-            //     name: currentAccessory.name,
-            //     price: currentAccessory.price,
-            //     facultatif: currentAccessory.facultatif,
-            //     options: currentAccessory.options
-            // });
-
-            // Réinitialiser l'état de l'accessoire ou procéder comme nécessaire
+            const response = await axios.post('/accessories', {
+                name: currentAccessory.name,
+                price: currentAccessory.price,
+                facultatif: currentAccessory.facultatif,
+                options: currentAccessory.options
+            });
             setCurrentAccessory({ name: '', price: 0, facultatif: false, options: [] });
         } catch (error) {
             setErrorMessage('Erreur lors de l\'ajout de l\'accessoire.');
