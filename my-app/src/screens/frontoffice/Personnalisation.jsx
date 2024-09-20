@@ -262,7 +262,7 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                             <img src={selectedOptions.boutons} alt="boutons front" className="personnalisation-image boutons" />
                             <img src={selectedOptions.ecran} alt="écran front" className="personnalisation-image ecran" />
                             <img src={selectedOptions.pads} alt="pads front" className="personnalisation-image pads" />
-                            
+
 
                         </>
                     ) : (
