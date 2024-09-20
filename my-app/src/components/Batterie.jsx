@@ -2,8 +2,6 @@
 import React from 'react';
 
 const Batterie = ({ selectedOptions, handleRadioChange }) => {
-    let color;
-
     return (
         <div>
             <label>
@@ -12,7 +10,7 @@ const Batterie = ({ selectedOptions, handleRadioChange }) => {
                     name="batterie"
                     value="Sans"
                     checked={selectedOptions.batterie === 'Sans'}
-                    onChange={() => handleRadioChange('batterie', 0, color='Sans')}
+                    onChange={() => handleRadioChange('batterie', 0,null, null, 'Sans')}
                 />
                 Sans
             </label>
@@ -22,7 +20,7 @@ const Batterie = ({ selectedOptions, handleRadioChange }) => {
                     name="batterie"
                     value="Batterie + Câble USB-C"
                     checked={selectedOptions.batterie === 'Batterie + Câble USB-C'}
-                    onChange={() => handleRadioChange('batterie', 15, color='Batterie + Câble USB-C')}
+                    onChange={() => handleRadioChange('batterie', 15, null, null, 'Batterie + Câble USB-C')}
                 />
                 Batterie + Câble USB-C (+15€)
             </label>

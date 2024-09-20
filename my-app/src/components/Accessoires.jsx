@@ -2,7 +2,6 @@
 import React from 'react';
 
 const Accessoires = ({ selectedOptions, handleRadioChange }) => {
-    let color;
     return (
         <div>
             <label>
@@ -11,7 +10,7 @@ const Accessoires = ({ selectedOptions, handleRadioChange }) => {
                     name="accessoires"
                     value="Verre trempé"
                     checked={selectedOptions.accessoires === 'Verre trempé'}
-                    onChange={() => handleRadioChange('accessoires', 4.90, color='Verre trempé')}
+                    onChange={() => handleRadioChange('accessoires', 4.90,null, null, 'Verre trempé')}
                 />
                 Verre trempé (+4.90€)
             </label>
@@ -21,7 +20,7 @@ const Accessoires = ({ selectedOptions, handleRadioChange }) => {
                     name="accessoires"
                     value="Coque Silicone"
                     checked={selectedOptions.accessoires === 'Coque Silicone'}
-                    onChange={() => handleRadioChange('accessoires', 6.90, color='Coque Silicone')}
+                    onChange={() => handleRadioChange('accessoires', 6.90,null, null, 'Coque Silicone')}
                 />
                 Coque Silicone (+6.90€)
             </label>
