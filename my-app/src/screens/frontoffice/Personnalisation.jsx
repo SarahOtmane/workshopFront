@@ -161,11 +161,14 @@ const [product, setProduct] = useState({
         pads: 'yellow',
         sidePads: 'yellow',
         coqueArriere: 'blue',
+        batterie: false,
+        accessoires: false
     }]
 });
 
-const handleOptionChange = (option, price, image = null, side = false) => {
+const handleOptionChange = (option, price, image = null, side = false, color) => {
     const optionKey = side ? `side${option.charAt(0).toUpperCase() + option.slice(1)}` : option;
+    const attributesOfProduct = product.attributes;
 
     setSelectedOptions((prevOptions) => {
         const newOptions = { ...prevOptions };
@@ -176,16 +179,19 @@ const handleOptionChange = (option, price, image = null, side = false) => {
             newOptions[optionKey] = image;
             if (option === 'coqueArriere') {
                 newOptions.coqueArriere = image;
+                attributesOfProduct[0].coqueArriere = color;
             }
 
             // Gestion du changement d'options pour la coque
             if (option === 'coque') {
                 if (side) {
                     const sideCoqueImage = image;
+                    attributesOfProduct[0].sideCoque = color;
                     newOptions.sideCoque = sideCoqueImage;
                     newOptions.coque = getFrontCoqueFromSide(sideCoqueImage);
                 } else {
                     const frontCoqueImage = image;
+                    attributesOfProduct[0].coque = color;
                     newOptions.coque = frontCoqueImage;
                     newOptions.sideCoque = getSideCoqueFromFront(frontCoqueImage);
                 }
@@ -195,10 +201,12 @@ const handleOptionChange = (option, price, image = null, side = false) => {
             if (option === 'boutons') {
                 if (side) {
                     const sideBoutonsImage = image;
+                    attributesOfProduct[0].sideBoutons = color;
                     newOptions.sideBoutons = sideBoutonsImage;
                     newOptions.boutons = getFrontBoutonsFromSide(sideBoutonsImage);
                 } else {
                     const frontBoutonsImage = image;
+                    attributesOfProduct[0].frontBoutonsImage = color;
                     newOptions.boutons = frontBoutonsImage;
                     newOptions.sideBoutons = getSideBoutonsFromFront(frontBoutonsImage);
                 }
@@ -208,10 +216,12 @@ const handleOptionChange = (option, price, image = null, side = false) => {
             if (option === 'pads') {
                 if (side) {
                     const sidePadsImage = image;
+                    attributesOfProduct[0].sidePadsImage = color;
                     newOptions.sidePads = sidePadsImage;
                     newOptions.pads = getFrontPadsFromSide(sidePadsImage);
                 } else {
                     const frontPadsImage = image;
+                    attributesOfProduct[0].frontPadsImage = color;
                     newOptions.pads = frontPadsImage;
                     newOptions.sidePads = getSidePadsFromFront(frontPadsImage);
                 }
@@ -221,10 +231,12 @@ const handleOptionChange = (option, price, image = null, side = false) => {
             if (option === 'ecran') {
                 if (side) {
                     const sideEcranImage = image;
+                    attributesOfProduct[0].sideEcranImage = color;
                     newOptions.sideEcran = sideEcranImage;
                     newOptions.ecran = getFrontEcranFromSide(sideEcranImage);
                 } else {
                     const frontEcranImage = image;
+                    attributesOfProduct[0].frontEcranImage = color;
                     newOptions.ecran = frontEcranImage;
                     newOptions.sideEcran = getSideEcranFromFront(frontEcranImage);
                 }
@@ -240,6 +252,8 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                     [option]: true,
                 }));
             }
+            console.log(attributesOfProduct);
+            setProduct({...product, attributesOfProduct});
         }
         return newOptions;
     });
@@ -302,13 +316,13 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                         </div>
                         {activeSection === option && (
                             <div className="option-content">
-                                {option === 'coque' && <Coque view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct} />}
-                                {option === 'coqueArriere' && view === 'side' && <CoqueArriere selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct}  />}
-                                {option === 'boutons' && <Boutons view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct}  />}
-                                {option === 'pads' && <Pads view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct}  />}
-                                {option === 'ecran' && <Ecran view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} product={product} setProduct={setProduct}  />}
-                                {option === 'batterie' && <Batterie selectedOptions={selectedOptions} handleRadioChange={handleOptionChange} product={product} setProduct={setProduct}  />}
-                                {option === 'accessoires' && <Accessoires selectedOptions={selectedOptions} handleRadioChange={handleOptionChange} product={product} setProduct={setProduct}  />}
+                                {option === 'coque' && <Coque view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />}
+                                {option === 'coqueArriere' && view === 'side' && <CoqueArriere selectedOptions={selectedOptions} handleOptionChange={handleOptionChange}  />}
+                                {option === 'boutons' && <Boutons view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange}  />}
+                                {option === 'pads' && <Pads view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange}  />}
+                                {option === 'ecran' && <Ecran view={view} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange}  />}
+                                {option === 'batterie' && <Batterie selectedOptions={selectedOptions} handleRadioChange={handleOptionChange}  />}
+                                {option === 'accessoires' && <Accessoires selectedOptions={selectedOptions} handleRadioChange={handleOptionChange}  />}
                             </div>
                         )}
                     </div>
