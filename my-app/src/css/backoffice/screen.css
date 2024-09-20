@@ -1,13 +1,19 @@
 /*****************************************************
                     Sommaire
 
-    1:= login (login screen)
+    1:= Global css
+    2:= login (login screen)
 
 *****************************************************/
 
+/* ----------- 1:= Global css ----------- */
+
+main {
+    max-width: 1920px;
+}
 
 
-/* ----------- 1:= login -------- */
+/* ----------- 2:= login -------- */
 .login form{
     padding-top: 5rem;
     border-radius: 2rem;
