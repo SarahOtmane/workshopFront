@@ -241,8 +241,6 @@ const handleOptionChange = (option, price, image = null, side = false) => {
                 }));
             }
         }
-
-        setProduct({...product, attributes: newOptions});
         return newOptions;
     });
 
