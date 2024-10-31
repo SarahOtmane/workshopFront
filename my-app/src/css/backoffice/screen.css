@@ -1,0 +1,32 @@
+/*****************************************************
+                    Sommaire
+
+    1:= Global css
+    2:= login (login screen)
+
+*****************************************************/
+
+/* ----------- 1:= Global css ----------- */
+
+main {
+    max-width: 1920px;
+}
+
+
+/* ----------- 2:= login -------- */
+.login form{
+    padding-top: 5rem;
+    border-radius: 2rem;
+}
+
+.login div.head{
+    width: 90%;
+    margin: auto;
+    color: black;
+    margin-bottom: 5rem;
+}
+
+.login img{
+    width: 35%;
+    margin-right: 10%;
+}

@@ -1,0 +1,70 @@
+.carousel-container {
+    width: 100%;
+    height: auto; /* Laisser l'auto-height pour s'adapter au contenu */
+    max-width: 1200px;
+    overflow: hidden;
+    background-color: var(--background);
+    position: relative;
+    box-sizing: border-box; /* Inclut le padding dans la hauteur totale */
+}
+
+.carousel-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem; /* Taille un peu plus grande pour les écrans larges */
+    width: 100%;
+    text-align: center;
+    transition: color 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.carousel-image {
+    width: 100%;
+    height: auto; /* Adapte l'image à la hauteur du conteneur */
+    object-fit: cover; /* Couvre tout l'espace sans déformer */
+}
+
+.slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Ajustement automatique en fonction du contenu */
+}
+
+.slick-prev, .slick-next {
+    display: block !important;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 50%;
+    width: 40px; /* Augmente la taille des boutons pour plus de visibilité */
+    height: 40px;
+}
+
+.slick-prev {
+    left: 10px;
+    z-index: 1; /* S'assurer que le bouton est au-dessus de l'image */
+}
+
+.slick-next {
+    right: 10px;
+    z-index: 1; /* S'assurer que le bouton est au-dessus de l'image */
+}
+
+/* Style des points de navigation */
+.slick-dots {
+    bottom: 10px; /* Ajuste la position des points en bas */
+}
+
+
+
+.slick-dots button {
+    background-color: #000000;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+}
+
+.slick-dots button:hover {
+    background-color: #ffffff;
+}
